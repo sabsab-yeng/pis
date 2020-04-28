@@ -1,4 +1,0 @@
-#Tue Apr 28 14:30:34 ICT 2020
-base.0=/Users/yeng/Documents/GitHub/pis/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
