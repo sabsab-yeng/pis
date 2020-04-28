@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/ui/widgets/full_width_raisedbutton_widget.dart';
+import 'package:pis/ui/widgets/full_width_raisedbutton_widget.dart';
 
 import '../../ui_constant.dart';
 

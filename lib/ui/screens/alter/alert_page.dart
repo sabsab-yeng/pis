@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/ui/screens/location/check_location_page.dart';
-
+import 'package:pis/ui/screens/location/check_location_page.dart';
 import '../../ui_constant.dart';
 
 class AlterPage extends StatefulWidget {
