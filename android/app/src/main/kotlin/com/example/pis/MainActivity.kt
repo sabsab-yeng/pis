@@ -1,4 +1,4 @@
-package com.example.pis
+package com.facns.pis
 
 import io.flutter.embedding.android.FlutterActivity
 
