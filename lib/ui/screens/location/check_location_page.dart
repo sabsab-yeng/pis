@@ -133,9 +133,7 @@ class CheckLocationPage extends StatefulWidget {
 class _CheckLocationPageState extends State<CheckLocationPage> {
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-     appBar: AppBar(title: Text("SElect"),),
-        body: Stack(fit: StackFit.expand, children: <Widget>[
+   return  Stack(fit: StackFit.expand, children: <Widget>[
         FullMapWidget(onSelectedLocation: (lat, long) {
           // Create the member now and set the category
           // onboardingBloc.setUserLocation(lat, long);
@@ -160,7 +158,7 @@ class _CheckLocationPageState extends State<CheckLocationPage> {
         //   ),
         //   alignment: Alignment.topLeft,
         // )
-      ]),
+      ],
    );
   }
 }
