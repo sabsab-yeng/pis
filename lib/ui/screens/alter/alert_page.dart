@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/ui/screens/appoint/send_email_page.dart';
+import 'package:test_project/ui/screens/location/check_location_page.dart';
 
 import '../../ui_constant.dart';
 
@@ -28,7 +28,7 @@ class _AlterPageState extends State<AlterPage> {
               child: InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SendMailPage()));
+                      MaterialPageRoute(builder: (context) => CheckLocationPage()));
                 },
                 child: Container(
                   padding: EdgeInsets.all(20),
