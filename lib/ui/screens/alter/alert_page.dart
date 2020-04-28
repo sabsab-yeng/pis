@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_project/ui/screens/appoint/send_email_page.dart';
-import '../../ui_construction.dart';
-import '../../ui_construction.dart';
+
+import '../../ui_constant.dart';
 
 class AlterPage extends StatefulWidget {
   @override

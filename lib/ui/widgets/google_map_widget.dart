@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,7 @@ import 'package:test_project/ui/widgets/stack_button_widget.dart';
 import '../ui_constant.dart';
 
 class FullMapWidget extends StatefulWidget {
-  final VoidCallback onSelectedLocation;
+  final Function onSelectedLocation;
   final Position defaultPosition;
   FullMapWidget({this.onSelectedLocation, this.defaultPosition});
 
@@ -20,7 +19,7 @@ class FullMapWidget extends StatefulWidget {
 class _FullMapWidgetState extends State<FullMapWidget> {
   // Default location would be vientiane
   final Position _defaultPosition =
-      Position(latitude: 17.9693597, longitude: 102.6144437);
+      Position(latitude: 17.966793, longitude: 102.613271);
   Completer<GoogleMapController> _controller = Completer();
   GoogleMapController _googleMapController;
   Future<Position> _currentLocation;
@@ -59,75 +58,79 @@ class _FullMapWidgetState extends State<FullMapWidget> {
         children: <Widget>[
           Container(
             color: backgroundColor,
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Expanded(
-                flex: 1,
-                child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
                     child: FutureBuilder(
-                        future: _currentLocation,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData == false &&
-                              snapshot.hasError == false) {
-                            return Center(child: CircularProgressIndicator());
-                          }
+                      future: _currentLocation,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData == false &&
+                            snapshot.hasError == false) {
+                          return Center(child: CircularProgressIndicator());
+                        }
 
-                          Position currentLocation = snapshot.data;
-                          if (snapshot.hasError == true) {
-                            currentLocation = _defaultPosition;
-                          }
+                        Position currentLocation = snapshot.data;
+                        if (snapshot.hasError == true) {
+                          currentLocation = _defaultPosition;
+                        }
 
-                          print(
-                              "**** currentLocation **** (${currentLocation.latitude},${currentLocation.longitude})");
-                          return GoogleMap(
-                            gestureRecognizers: Set()
-                              ..add(Factory<PanGestureRecognizer>(
-                                  () => PanGestureRecognizer()))
-                              ..add(Factory<ScaleGestureRecognizer>(
-                                  () => ScaleGestureRecognizer())),
-                            myLocationButtonEnabled: true,
-                            myLocationEnabled: true,
-                            mapType: MapType.normal,
-                            markers: _markers,
-                            initialCameraPosition: CameraPosition(
-                                target: (widget.defaultPosition != null)
-                                    ? LatLng(widget.defaultPosition.latitude,
-                                        widget.defaultPosition.longitude)
-                                    : LatLng(currentLocation.latitude,
-                                        currentLocation.longitude),
-                                zoom: (snapshot.hasError == true) ? 14 : 17),
-                            onMapCreated: (GoogleMapController controller) {
-                              _googleMapController = controller;
-                              _controller.complete(_googleMapController);
-                            },
-                            onTap: (latLong) {
-                              print("GoogleMap onTapped : $latLong");
-                              _addMarker(latLong);
-                            },
-                          );
-                        })),
-              ), // Next button
-              SizedBox(height: 10),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: StackButtonWiget(
-                  onPressed: () {
-                    if (widget.onSelectedLocation != null &&
-                        _selectedCoordinate != null) {
-                      // widget.onSelectedLocation(_selectedCoordinate.latitude,
-                          // _selectedCoordinate.longitude);
-                    }
-                  },
-                  titleText: (_selectedCoordinate == null)
-                      ? "On tap"
-                      : "I at there ",
-                  subtitleText: _selectedPlacemark,
-                  mainColor: (_selectedCoordinate != null)
-                      ? Theme.of(context).primaryColor
-                      : Colors.grey,
+                        print(
+                            "***** current Your Location ***** (${currentLocation.latitude},${currentLocation.longitude})");
+                        return GoogleMap(
+                          gestureRecognizers: Set()
+                            ..add(Factory<PanGestureRecognizer>(
+                                () => PanGestureRecognizer()))
+                            ..add(Factory<ScaleGestureRecognizer>(
+                                () => ScaleGestureRecognizer())),
+                          myLocationButtonEnabled: true,
+                          myLocationEnabled: true,
+                          mapType: MapType.normal,
+                          markers: _markers,
+                          initialCameraPosition: CameraPosition(
+                              target: (widget.defaultPosition != null)
+                                  ? LatLng(widget.defaultPosition.latitude,
+                                      widget.defaultPosition.longitude)
+                                  : LatLng(currentLocation.latitude,
+                                      currentLocation.longitude),
+                              zoom: (snapshot.hasError == true) ? 14 : 17),
+                          onMapCreated: (GoogleMapController controller) {
+                            _googleMapController = controller;
+                            _controller.complete(_googleMapController);
+                          },
+                          onTap: (latLong) {
+                            print("GoogleMap Click : $latLong");
+                            _addMarker(latLong);
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ), // Next button
+                SizedBox(height: 10),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: StackButtonWiget(
+                    onPressed: () {
+                      if (widget.onSelectedLocation != null &&
+                          _selectedCoordinate != null) {
+                        widget.onSelectedLocation(_selectedCoordinate.latitude,
+                            _selectedCoordinate.longitude);
+                      }
+                    },
+                    titleText: (_selectedCoordinate == null)
+                        ? "On tap"
+                        : " Is my location",
+                    subtitleText: _selectedPlacemark,
+                    mainColor: (_selectedCoordinate != null)
+                        ? Theme.of(context).primaryColor
+                        : Colors.grey,
+                  ),
                 ),
-              )
-            ]),
+              ],
+            ),
           ),
           Align(
             alignment: Alignment.topCenter,
@@ -135,19 +138,19 @@ class _FullMapWidgetState extends State<FullMapWidget> {
               padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
               child: Container(
                 child: Text(
-                  "Please choose your location",
+                  "Choose area",
                   style: appbarTextStyle,
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
   _addMarker(LatLng latLong) async {
-    // _googleMapController.
+    // googleMapController.
     Marker _marker = new Marker(
       icon: BitmapDescriptor.defaultMarker,
       markerId: MarkerId("CustomerLocation"),
