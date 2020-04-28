@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:test_project/ui/widgets/google_map_widget.dart';
+import 'package:pis/ui/widgets/google_map_widget.dart';
 
 // class CheckLocationPage extends StatefulWidget {
 //   @override

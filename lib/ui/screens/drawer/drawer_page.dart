@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/ui/screens/location/check_location_page.dart';
-import 'package:test_project/ui/screens/settings/setting_page.dart';
-import 'package:test_project/ui/widgets/menu_drawer_widget.dart';
+import 'package:pis/ui/screens/location/check_location_page.dart';
+import 'package:pis/ui/screens/settings/setting_page.dart';
+import 'package:pis/ui/widgets/menu_drawer_widget.dart';
 import '../home/root_page.dart';
 
 class DrawerMenuPage extends StatelessWidget {

@@ -4,8 +4,8 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/classes/event_list.dart';
 import 'package:intl/intl.dart' show DateFormat;
-import 'package:test_project/ui/screens/appoint/appointment_page.dart';
-import 'package:test_project/ui/widgets/raised_button_widget.dart';
+import 'package:pis/ui/screens/appoint/appointment_page.dart';
+import 'package:pis/ui/widgets/raised_button_widget.dart';
 import '../../ui_constant.dart';
 
 class CalendarPage extends StatefulWidget {

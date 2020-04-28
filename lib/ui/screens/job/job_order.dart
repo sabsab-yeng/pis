@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/ui/screens/appoint/calendar_page.dart';
-import 'package:test_project/ui/ui_constant.dart';
-import 'package:test_project/ui/widgets/raised_button_widget.dart';
+import 'package:pis/ui/screens/appoint/calendar_page.dart';
+import 'package:pis/ui/ui_constant.dart';
+import 'package:pis/ui/widgets/raised_button_widget.dart';
 
 class JobOrderPage extends StatefulWidget {
   @override

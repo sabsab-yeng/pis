@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/ui/screens/alter/alert_page.dart';
-import 'package:test_project/ui/screens/drawer/drawer_page.dart';
-import 'package:test_project/ui/screens/home/home_page.dart';
-import 'package:test_project/ui/screens/job/job_order.dart';
-import 'package:test_project/ui/screens/plan/plan_list_page.dart';
+import 'package:pis/ui/screens/alter/alert_page.dart';
+import 'package:pis/ui/screens/drawer/drawer_page.dart';
+import 'package:pis/ui/screens/home/home_page.dart';
+import 'package:pis/ui/screens/job/job_order.dart';
+import 'package:pis/ui/screens/plan/plan_list_page.dart';
 
 import '../../ui_constant.dart';
 

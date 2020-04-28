@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:test_project/ui/widgets/stack_button_widget.dart';
+import 'package:pis/ui/widgets/stack_button_widget.dart';
 import '../ui_constant.dart';
 
 class FullMapWidget extends StatefulWidget {
