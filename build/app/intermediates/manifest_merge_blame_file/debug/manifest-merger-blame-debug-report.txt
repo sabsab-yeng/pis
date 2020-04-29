@@ -1,0 +1,362 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.facns.pis"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+9        android:targetSdkVersion="28" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/yeng/Documents/GitHub/pis/android/app/src/debug/AndroidManifest.xml:6:5-66
+14-->/Users/yeng/Documents/GitHub/pis/android/app/src/debug/AndroidManifest.xml:6:22-64
+15    <!--
+16     io.flutter.app.FlutterApplication is an android.app.Application that
+17         calls FlutterMain.startInitialization(this); in its onCreate method.
+18         In most cases you can leave this as-is, but you if you want to provide
+19         additional functionality it is fine to subclass or reimplement
+20         FlutterApplication and put your custom class here.
+21    -->
+22    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+22-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:8:5-80
+22-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:8:22-78
+23    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+23-->[:geolocator] /Users/yeng/Documents/GitHub/pis/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+23-->[:geolocator] /Users/yeng/Documents/GitHub/pis/build/geolocator/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
+24    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+24-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-80
+24-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-77
+25    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+25-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-81
+25-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-78
+26    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+26-->[:firebase_analytics] /Users/yeng/Documents/GitHub/pis/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+26-->[:firebase_analytics] /Users/yeng/Documents/GitHub/pis/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
+27    <uses-permission android:name="android.permission.WAKE_LOCK" />
+27-->[:firebase_analytics] /Users/yeng/Documents/GitHub/pis/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-68
+27-->[:firebase_analytics] /Users/yeng/Documents/GitHub/pis/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-65
+28
+29    <uses-feature
+29-->[com.google.android.gms:play-services-maps:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/23cc5518a2842de42d517ee74aa79a3e/play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
+30        android:glEsVersion="0x00020000"
+30-->[com.google.android.gms:play-services-maps:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/23cc5518a2842de42d517ee74aa79a3e/play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
+31        android:required="true" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+31-->[com.google.android.gms:play-services-maps:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/23cc5518a2842de42d517ee74aa79a3e/play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
+32    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+32-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:26:5-82
+32-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:26:22-79
+33    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+33-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:26:5-110
+33-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:26:22-107
+34
+35    <application
+35-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:9:5-50:19
+36        android:name="io.flutter.app.FlutterApplication"
+36-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:10:9-57
+37        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+37-->[androidx.core:core:1.2.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/fa6f4e21abebe2d79db3175d07d54142/core-1.2.0/AndroidManifest.xml:24:18-86
+38        android:debuggable="true"
+39        android:icon="@mipmap/ic_launcher"
+39-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:12:9-43
+40        android:label="pis" >
+40-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:11:9-28
+41        <meta-data
+41-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:13:9-15:66
+42            android:name="com.google.android.geo.API_KEY"
+42-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:14:9-54
+43            android:value="AIzaSyAX3gpK5U-q9B05jPDL9c9JvJbAIsB21mw" />
+43-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:15:9-64
+44
+45        <activity
+45-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:16:9-44:20
+46            android:name="com.facns.pis.MainActivity"
+46-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:17:13-41
+47            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+47-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:20:13-163
+48            android:hardwareAccelerated="true"
+48-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:21:13-47
+49            android:launchMode="singleTop"
+49-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:18:13-43
+50            android:theme="@style/LaunchTheme"
+50-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:19:13-47
+51            android:windowSoftInputMode="adjustResize" >
+51-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:22:13-55
+52
+53            <!--
+54                 Specifies an Android theme to apply to this Activity as soon as
+55                 the Android process has started. This theme is visible to the user
+56                 while the Flutter UI initializes. After that, this theme continues
+57                 to determine the Window background behind the Flutter UI.
+58            -->
+59            <meta-data
+59-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:27:13-30:17
+60                android:name="io.flutter.embedding.android.NormalTheme"
+60-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:28:15-70
+61                android:resource="@style/NormalTheme" />
+61-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:29:15-52
+62            <!--
+63                 Displays an Android View that continues showing the launch screen
+64                 Drawable until Flutter paints its first frame, then this splash
+65                 screen fades out. A splash screen is useful to avoid any visual
+66                 gap between the end of Android's launch screen and the painting of
+67                 Flutter's first frame.
+68            -->
+69            <meta-data
+69-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:36:13-39:17
+70                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+70-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:37:15-79
+71                android:resource="@drawable/launch_background" />
+71-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:38:15-61
+72
+73            <intent-filter>
+73-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:40:13-43:29
+74                <action android:name="android.intent.action.MAIN" />
+74-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:41:17-68
+74-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:41:25-66
+75
+76                <category android:name="android.intent.category.LAUNCHER" />
+76-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:42:17-76
+76-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:42:27-74
+77            </intent-filter>
+78        </activity>
+79        <!--
+80             Don't delete the meta-data below.
+81             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+82        -->
+83        <meta-data
+83-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:47:9-49:33
+84            android:name="flutterEmbedding"
+84-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:48:13-44
+85            android:value="2" />
+85-->/Users/yeng/Documents/GitHub/pis/android/app/src/main/AndroidManifest.xml:49:13-30
+86
+87        <provider
+87-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-19:20
+88            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+88-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-82
+89            android:authorities="com.facns.pis.flutter.image_provider"
+89-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-74
+90            android:exported="false"
+90-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+91            android:grantUriPermissions="true" >
+91-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-47
+92            <meta-data
+92-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-18:75
+93                android:name="android.support.FILE_PROVIDER_PATHS"
+93-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-67
+94                android:resource="@xml/flutter_image_picker_file_paths" />
+94-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-72
+95        </provider>
+96        <provider
+96-->[:flutter_email_sender] /Users/yeng/Documents/GitHub/pis/build/flutter_email_sender/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-16:20
+97            android:name="com.sidlatau.flutteremailsender.FlutterEmailSenderFileProvider"
+97-->[:flutter_email_sender] /Users/yeng/Documents/GitHub/pis/build/flutter_email_sender/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-90
+98            android:authorities="com.facns.pis.file_provider"
+98-->[:flutter_email_sender] /Users/yeng/Documents/GitHub/pis/build/flutter_email_sender/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-65
+99            android:exported="false"
+99-->[:flutter_email_sender] /Users/yeng/Documents/GitHub/pis/build/flutter_email_sender/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-37
+100            android:grantUriPermissions="true" >
+100-->[:flutter_email_sender] /Users/yeng/Documents/GitHub/pis/build/flutter_email_sender/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-47
+101            <meta-data
+101-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-18:75
+102                android:name="android.support.FILE_PROVIDER_PATHS"
+102-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-67
+103                android:resource="@xml/shared_file_paths" />
+103-->[:image_picker] /Users/yeng/Documents/GitHub/pis/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-72
+104        </provider>
+105
+106        <service android:name="io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingService" >
+106-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
+106-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-101
+107            <intent-filter>
+107-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:29
+108                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+108-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-78
+108-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:25-75
+109            </intent-filter>
+110        </service>
+111        <service
+111-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:13:9-17:19
+112            android:name="com.google.firebase.components.ComponentDiscoveryService"
+112-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:13:18-89
+113            android:directBootAware="true"
+113-->[com.google.firebase:firebase-common:19.2.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/12f4f5a8e0b072085a8367f6b19a0d04/firebase-common-19.2.0/AndroidManifest.xml:15:13-43
+114            android:exported="false" >
+114-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:35:13-37
+115            <meta-data
+115-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-16:85
+116                android:name="com.google.firebase.components:io.flutter.plugins.firebasemessaging.FlutterFirebaseAppRegistrar"
+116-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-127
+117                android:value="com.google.firebase.components.ComponentRegistrar" />
+117-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:16:17-82
+118            <meta-data
+118-->[:firebase_analytics] /Users/yeng/Documents/GitHub/pis/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-15:85
+119                android:name="com.google.firebase.components:io.flutter.plugins.firebaseanalytics.FlutterFirebaseAppRegistrar"
+119-->[:firebase_analytics] /Users/yeng/Documents/GitHub/pis/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-127
+120                android:value="com.google.firebase.components.ComponentRegistrar" />
+120-->[:firebase_analytics] /Users/yeng/Documents/GitHub/pis/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-82
+121            <meta-data
+121-->[:firebase_auth] /Users/yeng/Documents/GitHub/pis/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+122                android:name="com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar"
+122-->[:firebase_auth] /Users/yeng/Documents/GitHub/pis/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-122
+123                android:value="com.google.firebase.components.ComponentRegistrar" />
+123-->[:firebase_auth] /Users/yeng/Documents/GitHub/pis/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+124            <meta-data
+124-->[:firebase_core] /Users/yeng/Documents/GitHub/pis/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+125                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
+125-->[:firebase_core] /Users/yeng/Documents/GitHub/pis/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-123
+126                android:value="com.google.firebase.components.ComponentRegistrar" />
+126-->[:firebase_core] /Users/yeng/Documents/GitHub/pis/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+127            <meta-data
+127-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:36:13-38:85
+128                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+128-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:37:17-109
+129                android:value="com.google.firebase.components.ComponentRegistrar" />
+129-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:38:17-82
+130            <meta-data
+130-->[com.google.android.gms:play-services-measurement-api:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/b231069949ead34957f29bc8abab2478/jetified-play-services-measurement-api-16.5.0/AndroidManifest.xml:30:13-32:85
+131                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+131-->[com.google.android.gms:play-services-measurement-api:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/b231069949ead34957f29bc8abab2478/jetified-play-services-measurement-api-16.5.0/AndroidManifest.xml:31:17-139
+132                android:value="com.google.firebase.components.ComponentRegistrar" />
+132-->[com.google.android.gms:play-services-measurement-api:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/b231069949ead34957f29bc8abab2478/jetified-play-services-measurement-api-16.5.0/AndroidManifest.xml:32:17-82
+133            <meta-data
+133-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:32:13-34:85
+134                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+134-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:33:17-96
+135                android:value="com.google.firebase.components.ComponentRegistrar" />
+135-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:34:17-82
+136        </service> <!-- Needs to be explicitly declared on P+ -->
+137        <uses-library
+137-->[com.google.android.gms:play-services-maps:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/23cc5518a2842de42d517ee74aa79a3e/play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+138            android:name="org.apache.http.legacy"
+138-->[com.google.android.gms:play-services-maps:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/23cc5518a2842de42d517ee74aa79a3e/play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+139            android:required="false" />
+139-->[com.google.android.gms:play-services-maps:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/23cc5518a2842de42d517ee74aa79a3e/play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+140
+141        <activity
+141-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:24:9-31:50
+142            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+142-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:25:13-85
+143            android:excludeFromRecents="true"
+143-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:26:13-46
+144            android:exported="true"
+144-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:27:13-36
+145            android:launchMode="singleTask"
+145-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:28:13-44
+146            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+146-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:29:13-102
+147            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+147-->[com.google.firebase:firebase-auth:17.0.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/63f4ad669c5153c18db2e24185f4c2ef/jetified-firebase-auth-17.0.0/AndroidManifest.xml:30:13-72
+148        <!--
+149             FirebaseMessagingService performs security checks at runtime,
+150             but set to not exported to explicitly avoid allowing another app to call it.
+151        -->
+152        <service
+152-->[com.google.firebase:firebase-messaging:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/1c495ccc19c6a2831b8d413e91cbc8a3/jetified-firebase-messaging-20.0.1/AndroidManifest.xml:28:9-34:19
+153            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+153-->[com.google.firebase:firebase-messaging:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/1c495ccc19c6a2831b8d413e91cbc8a3/jetified-firebase-messaging-20.0.1/AndroidManifest.xml:29:13-82
+154            android:exported="false" >
+154-->[com.google.firebase:firebase-messaging:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/1c495ccc19c6a2831b8d413e91cbc8a3/jetified-firebase-messaging-20.0.1/AndroidManifest.xml:30:13-37
+155            <intent-filter android:priority="-500" >
+155-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:29
+156                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+156-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-78
+156-->[:firebase_messaging] /Users/yeng/Documents/GitHub/pis/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:10:25-75
+157            </intent-filter>
+158        </service>
+159
+160        <receiver
+160-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:37:9-44:20
+161            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+161-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:38:13-78
+162            android:exported="true"
+162-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:39:13-36
+163            android:permission="com.google.android.c2dm.permission.SEND" >
+163-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:40:13-73
+164            <intent-filter>
+164-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:41:13-43:29
+165                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+165-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:42:17-81
+165-->[com.google.firebase:firebase-iid:20.0.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/77a5bcd1f167f80475c35924b1976ab4/firebase-iid-20.0.1/AndroidManifest.xml:42:25-78
+166            </intent-filter>
+167        </receiver>
+168
+169        <activity
+169-->[com.google.android.gms:play-services-base:17.2.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/619abba053f621d4e7f075aa1cc9b056/play-services-base-17.2.1/AndroidManifest.xml:23:9-26:75
+170            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+170-->[com.google.android.gms:play-services-base:17.2.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/619abba053f621d4e7f075aa1cc9b056/play-services-base-17.2.1/AndroidManifest.xml:24:13-79
+171            android:exported="false"
+171-->[com.google.android.gms:play-services-base:17.2.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/619abba053f621d4e7f075aa1cc9b056/play-services-base-17.2.1/AndroidManifest.xml:25:13-37
+172            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+172-->[com.google.android.gms:play-services-base:17.2.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/619abba053f621d4e7f075aa1cc9b056/play-services-base-17.2.1/AndroidManifest.xml:26:13-72
+173
+174        <provider
+174-->[com.google.firebase:firebase-common:19.2.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/12f4f5a8e0b072085a8367f6b19a0d04/firebase-common-19.2.0/AndroidManifest.xml:19:9-23:39
+175            android:name="com.google.firebase.provider.FirebaseInitProvider"
+175-->[com.google.firebase:firebase-common:19.2.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/12f4f5a8e0b072085a8367f6b19a0d04/firebase-common-19.2.0/AndroidManifest.xml:20:13-77
+176            android:authorities="com.facns.pis.firebaseinitprovider"
+176-->[com.google.firebase:firebase-common:19.2.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/12f4f5a8e0b072085a8367f6b19a0d04/firebase-common-19.2.0/AndroidManifest.xml:21:13-72
+177            android:exported="false"
+177-->[com.google.firebase:firebase-common:19.2.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/12f4f5a8e0b072085a8367f6b19a0d04/firebase-common-19.2.0/AndroidManifest.xml:22:13-37
+178            android:initOrder="100" />
+178-->[com.google.firebase:firebase-common:19.2.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/12f4f5a8e0b072085a8367f6b19a0d04/firebase-common-19.2.0/AndroidManifest.xml:23:13-36
+179
+180        <receiver
+180-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:29:9-33:20
+181            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+181-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:30:13-85
+182            android:enabled="true"
+182-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:31:13-35
+183            android:exported="false" >
+183-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:32:13-37
+184        </receiver>
+185        <receiver
+185-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:34:9-42:20
+186            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+186-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:35:13-100
+187            android:enabled="true"
+187-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:36:13-35
+188            android:exported="true"
+188-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:37:13-36
+189            android:permission="android.permission.INSTALL_PACKAGES" >
+189-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:38:13-69
+190            <intent-filter>
+190-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:39:13-41:29
+191                <action android:name="com.android.vending.INSTALL_REFERRER" />
+191-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:40:17-79
+191-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:40:25-76
+192            </intent-filter>
+193        </receiver>
+194
+195        <service
+195-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:44:9-47:40
+196            android:name="com.google.android.gms.measurement.AppMeasurementService"
+196-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:45:13-84
+197            android:enabled="true"
+197-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:46:13-35
+198            android:exported="false" />
+198-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:47:13-37
+199        <service
+199-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:48:9-52:72
+200            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+200-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:49:13-87
+201            android:enabled="true"
+201-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:50:13-35
+202            android:exported="false"
+202-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:51:13-37
+203            android:permission="android.permission.BIND_JOB_SERVICE" />
+203-->[com.google.android.gms:play-services-measurement:16.5.0] /Users/yeng/.gradle/caches/transforms-2/files-2.1/4a987b8241eb2d835e9ae8b3e0704dde/jetified-play-services-measurement-16.5.0/AndroidManifest.xml:52:13-69
+204
+205        <meta-data
+205-->[com.google.android.gms:play-services-basement:17.2.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/b7a2c5195d4e96c5476b46eb9a6f6d14/jetified-play-services-basement-17.2.1/AndroidManifest.xml:23:9-25:69
+206            android:name="com.google.android.gms.version"
+206-->[com.google.android.gms:play-services-basement:17.2.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/b7a2c5195d4e96c5476b46eb9a6f6d14/jetified-play-services-basement-17.2.1/AndroidManifest.xml:24:13-58
+207            android:value="@integer/google_play_services_version" />
+207-->[com.google.android.gms:play-services-basement:17.2.1] /Users/yeng/.gradle/caches/transforms-2/files-2.1/b7a2c5195d4e96c5476b46eb9a6f6d14/jetified-play-services-basement-17.2.1/AndroidManifest.xml:25:13-66
+208    </application>
+209
+210</manifest>
