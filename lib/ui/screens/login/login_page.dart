@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pis/ui/screens/home/root_page.dart';
 import 'package:pis/ui/screens/login/signup_page.dart';
 import 'package:pis/ui/widgets/full_width_raisedbutton_widget.dart';
@@ -119,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: 20,
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: _handleSignIn,
                       icon: Icon(
                         FontAwesomeIcons.googlePlusG,
                         color: Colors.red,
@@ -151,6 +152,23 @@ class _LoginPageState extends State<LoginPage> {
       } catch (e) {
         print(e.message);
       }
+    }
+  }
+  
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
+  /// sign in with google
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+      //  Navigator.push(
+      //       context, MaterialPageRoute(builder: (context) => RootPage()));
+    } catch (error) {
+      print(error);
     }
   }
 }
