@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/home/root_page.dart';
+import 'package:pis/ui/screens/login/login_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: RootPage(),
+      home: LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }
