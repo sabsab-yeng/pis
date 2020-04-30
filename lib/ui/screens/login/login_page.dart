@@ -105,29 +105,76 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        FontAwesomeIcons.facebookF,
-                        color: Colors.blue,
-                        size: 30,
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          FontAwesomeIcons.facebookF,
+                          color: Colors.blue,
+                          size: 30,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    IconButton(
-                      onPressed: _handleSignIn,
-                      icon: Icon(
-                        FontAwesomeIcons.googlePlusG,
-                        color: Colors.red,
-                        size: 30,
+                      SizedBox(
+                        width: 20,
                       ),
-                    ),
-                  ],
+                      IconButton(
+                        onPressed: _handleSignIn,
+                        icon: Icon(
+                          FontAwesomeIcons.googlePlusG,
+                          color: Colors.red,
+                          size: 30,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          FontAwesomeIcons.twitter,
+                          color: Colors.blue,
+                          size: 30,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          FontAwesomeIcons.apple,
+                          color: Colors.black,
+                          size: 30,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.phone,
+                          color: Colors.blue,
+                          size: 30,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          FontAwesomeIcons.microsoft,
+                          color: Colors.blue,
+                          size: 30,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -154,19 +201,20 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
-  
+
   GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-);
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
+
   /// sign in with google
   Future<void> _handleSignIn() async {
     try {
       await _googleSignIn.signIn();
-      //  Navigator.push(
-      //       context, MaterialPageRoute(builder: (context) => RootPage()));
+       Navigator.push(
+            context, MaterialPageRoute(builder: (context) => RootPage()));
     } catch (error) {
       print(error);
     }
