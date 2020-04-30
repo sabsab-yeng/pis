@@ -48,6 +48,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                 FullWidthRaisedButtonWidget(
                   title: "Done",
                   onPressed: () {
+                    Navigator.pop(context);
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginPage()));
                   },
                 ),
