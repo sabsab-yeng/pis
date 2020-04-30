@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pis/ui/screens/home/root_page.dart';
+import 'package:pis/ui/screens/login/forgot/reset_password_page.dart';
 import 'package:pis/ui/screens/login/signup_page.dart';
 import 'package:pis/ui/widgets/full_width_raisedbutton_widget.dart';
 
@@ -12,8 +13,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _passwordTextController = TextEditingController();
 
   String _email, _pass;
 
@@ -85,7 +84,9 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   children: [
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> ResetPasswordPage()));
+                      },
                       child: Text('Forgot password'),
                     ),
                     SizedBox(
@@ -209,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
     ],
   );
 
-  /// sign in with google
+  // Sign in with google
   Future<void> _handleSignIn() async {
     try {
       await _googleSignIn.signIn();
