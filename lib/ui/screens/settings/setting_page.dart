@@ -93,12 +93,21 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       appBar: AppBar(
          iconTheme: IconThemeData(color: appbarIconColor),
+         elevation: 0.0,
         title: Text(
           'Settings',
           style: appbarTextStyle,
         ),
         backgroundColor: appBarColor,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         actions: [Icon(Icons.person_outline)],
       ),
       body: SingleChildScrollView(

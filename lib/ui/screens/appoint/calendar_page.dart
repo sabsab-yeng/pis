@@ -207,7 +207,8 @@ class _CalendarPageState extends State<CalendarPage> {
                         fontWeight: FontWeight.bold,
                         fontSize: 24.0,
                       ),
-                    )),
+                    ),
+                    ),
                     FlatButton(
                       child: Text('ກ່ອນໜ້ານີ້'),
                       onPressed: () {

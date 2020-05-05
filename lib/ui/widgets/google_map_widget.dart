@@ -54,6 +54,23 @@ class _FullMapWidgetState extends State<FullMapWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: appBarColor,
+        elevation: 0.0,
+        title: Text('Choose area',
+        style: appbarTextStyle,
+        ),
+        centerTitle: true,
+       iconTheme: IconThemeData(color: appbarIconColor),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Stack(
         children: <Widget>[
           Container(
@@ -130,18 +147,6 @@ class _FullMapWidgetState extends State<FullMapWidget> {
                   ),
                 ),
               ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
-              child: Container(
-                child: Text(
-                  "Choose area",
-                  style: appbarTextStyle,
-                ),
-              ),
             ),
           ),
         ],
