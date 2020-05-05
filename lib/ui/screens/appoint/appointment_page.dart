@@ -16,6 +16,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0.0,
         title: Text('Appointment', style: appbarTextStyle,),
         centerTitle: true,
         backgroundColor: appBarColor,

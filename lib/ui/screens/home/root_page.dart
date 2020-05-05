@@ -31,6 +31,7 @@ class _RootPageState extends State<RootPage> {
        iconTheme: IconThemeData(color: appbarIconColor),
         centerTitle: true,
         title: Text("Home page", style: appbarTextStyle,),
+        elevation: 0.0,
         actions: <Widget>[
 
           IconButton(

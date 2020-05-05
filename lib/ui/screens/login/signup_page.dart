@@ -73,7 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 20,
                     ),
                     TextFormField(
-                      validator: (input) {
+                      validator: (input){
                         if (input.length < 5) {
                           return 'Please type password more then 5 charator';
                         }

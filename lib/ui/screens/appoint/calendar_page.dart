@@ -165,6 +165,7 @@ class _CalendarPageState extends State<CalendarPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBarColor,
+        elevation: 0.0,
         title: Text(
           'Please choose your calendar',
           style: appbarTextStyle,
