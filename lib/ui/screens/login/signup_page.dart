@@ -23,7 +23,7 @@ class _SignUpPageState extends State<SignUpPage> {
       try {
         AuthResult user = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: _email, password: _pass);
-            print("User name" + user.user.email);
+            print("User name: " + user.user.email);
         // user.s
         Navigator.of(context).pop();
         Navigator.pushReplacement(

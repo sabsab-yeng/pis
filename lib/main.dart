@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pis/ui/screens/home/root_page.dart';
 import 'package:pis/ui/screens/login/login_page.dart';
 
 void main() {
