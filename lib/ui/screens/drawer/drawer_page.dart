@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pis/ui/screens/example/insert_page.dart';
 import 'package:pis/ui/screens/location/check_location_page.dart';
 import 'package:pis/ui/screens/settings/setting_page.dart';
 import 'package:pis/ui/widgets/menu_drawer_widget.dart';
 import '../home/root_page.dart';
 
 class DrawerMenuPage extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,21 +34,36 @@ class DrawerMenuPage extends StatelessWidget {
               icon: Icons.home,
               title: "Home",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>RootPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RootPage()));
               },
             ),
-             MenuDrawerWidget(
+            MenuDrawerWidget(
+              icon: Icons.data_usage,
+              title: "Example Insert",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => InsertPage()));
+              },
+            ),
+            MenuDrawerWidget(
               icon: Icons.map,
               title: "Google map",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>CheckLocationPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CheckLocationPage()));
               },
             ),
             MenuDrawerWidget(
               icon: Icons.settings,
               title: "Settings",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>SettingPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingPage()));
               },
             ),
             MenuDrawerWidget(
@@ -58,12 +73,10 @@ class DrawerMenuPage extends StatelessWidget {
                 // Navigator.push(context, MaterialPageRoute(builder: (context)=>RootPage()));
               },
             ),
-             MenuDrawerWidget(
+            MenuDrawerWidget(
               icon: Icons.power_settings_new,
               title: "Log Out",
-              onTap: () {
-                
-              },
+              onTap: () {},
             ),
           ],
         ),
