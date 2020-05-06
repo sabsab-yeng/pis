@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pis/ui/ui_constant.dart';
 
-class Insertemployee extends StatefulWidget {
+class EmployeePage extends StatefulWidget {
   @override
   Insertemployees createState() => Insertemployees();
 }
 
-class Insertemployees extends State<Insertemployee> {
+class Insertemployees extends State<EmployeePage> {
  
   @override
   Widget build(BuildContext context) {
