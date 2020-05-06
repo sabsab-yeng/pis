@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:pis/ui/ui_constant.dart';
+import 'package:pis/ui/widgets/raised_button_widget.dart';
 
+import '../../ui_constant.dart';
 class EmployeePage extends StatefulWidget {
   @override
-  Insertemployees createState() => Insertemployees();
+  _EmployeePageState createState() => _EmployeePageState();
 }
 
-class Insertemployees extends State<EmployeePage> {
- 
+class _EmployeePageState extends State<EmployeePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       appBar: AppBar(
+         elevation: 0,
+        iconTheme: IconThemeData(color: appbarIconColor),
         title: Text(
-          "insert Employee",
+          'Employee',
           style: appbarTextStyle,
         ),
-        centerTitle: true,
         backgroundColor: appBarColor,
-        iconTheme: IconThemeData(color: appbarIconColor),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -32,7 +39,6 @@ class Insertemployees extends State<EmployeePage> {
               Flexible(
                 flex: 0,
                 child: Form(
-                
                   child: Flex(
                     direction: Axis.vertical,
                     children: [
@@ -44,7 +50,7 @@ class Insertemployees extends State<EmployeePage> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       TextFormField(
                         autofocus: false,                           
@@ -54,7 +60,7 @@ class Insertemployees extends State<EmployeePage> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       TextFormField(                                         
                         autofocus: false,
@@ -64,7 +70,7 @@ class Insertemployees extends State<EmployeePage> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
                       TextFormField(
                       keyboardType: TextInputType.phone,                     
@@ -82,13 +88,9 @@ class Insertemployees extends State<EmployeePage> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
-                      RaisedButton(
-                        child: Text('Save'),
-                        onPressed: () {                     
-                        },
-                      ),
+                      RaisedButtonWidget(title: "Insert",onPressed: (){},),
                     ],
                   ),
                 ),
