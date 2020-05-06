@@ -5,6 +5,7 @@ import 'package:pis/ui/screens/settings/setting_page.dart';
 import 'package:pis/ui/screens/sqfite/data_test.dart';
 import 'package:pis/ui/widgets/menu_drawer_widget.dart';
 import '../home/root_page.dart';
+import 'management_page.dart';
 
 class DrawerMenuPage extends StatelessWidget {
   @override
@@ -75,9 +76,11 @@ class DrawerMenuPage extends StatelessWidget {
               },
             ),
             MenuDrawerWidget(
-              icon: Icons.power_settings_new,
-              title: "Log Out",
-              onTap: () {},
+              icon: Icons.dialpad,
+              title: "Manage Data",
+              onTap: () {
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ManagementPage()));
+              },
             ),
           ],
         ),
