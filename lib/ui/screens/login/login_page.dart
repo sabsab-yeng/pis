@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       IconButton(
                         onPressed: _handleSignIn,
@@ -131,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       IconButton(
                         onPressed: () {},
@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       IconButton(
                         onPressed: () {},
@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       IconButton(
                         onPressed: () {},
@@ -164,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       IconButton(
                         onPressed: () {},
