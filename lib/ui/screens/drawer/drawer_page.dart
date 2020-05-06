@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/example/insert_page.dart';
 import 'package:pis/ui/screens/location/check_location_page.dart';
 import 'package:pis/ui/screens/settings/setting_page.dart';
+import 'package:pis/ui/screens/sqfite/data_test.dart';
 import 'package:pis/ui/widgets/menu_drawer_widget.dart';
 import '../home/root_page.dart';
 
@@ -68,9 +69,9 @@ class DrawerMenuPage extends StatelessWidget {
             ),
             MenuDrawerWidget(
               icon: Icons.language,
-              title: "Language",
+              title: "SQFite",
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=>RootPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>DatatablePage()));
               },
             ),
             MenuDrawerWidget(
