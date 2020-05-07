@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/customer/customer_page.dart';
 import 'package:pis/ui/screens/drawer/joborder/joborder_page.dart';
-import 'package:pis/ui/screens/employee/employee_page.dart';
+import 'package:pis/ui/screens/employee/listview_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 
 import '../../ui_constant.dart';
@@ -26,7 +26,9 @@ class _ManagementPageState extends State<ManagementPage> {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -36,7 +38,7 @@ class _ManagementPageState extends State<ManagementPage> {
             children: [
              InkWellWidget(onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=> CustomerPage()));}, title: "Customer",),
              Divider(),
-             InkWellWidget(onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=> EmployeePage()));}, title: "Employee",),
+             InkWellWidget(onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=> ListViewNote()));}, title: "Employee",),
              Divider(),
              InkWellWidget(onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> JobPage()));
