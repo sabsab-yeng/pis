@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/customer/cust_helper.dart';
 import 'package:pis/ui/screens/customer/customer_model.dart';
 
+import '../../ui_constant.dart';
 import 'customer_input_page.dart';
 
 class CustomerPage extends StatefulWidget {
@@ -30,9 +31,20 @@ class _CustomerPageState extends State<CustomerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('ListView Customer'),
-          centerTitle: true,
-          backgroundColor: Colors.blue,
+         title: Text('All Customer', style: appbarTextStyle,),
+        centerTitle: true,
+        backgroundColor: appBarColor,
+        iconTheme: IconThemeData(color: appbarIconColor),
+
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        elevation: 0,
         ),
         body: Center(
           child: ListView.builder(

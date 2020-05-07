@@ -29,8 +29,6 @@ class _AppointmentPageState extends State<AppointmentPage> {
             Navigator.pop(context);
           },
         ),
-
-        // backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Container(

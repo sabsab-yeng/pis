@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/employee/emp_helper.dart';
 import 'package:pis/ui/screens/employee/emp_model.dart';
 import 'package:pis/ui/screens/employee/employee_input_page.dart';
+
+import '../../ui_constant.dart';
 class EmployeePage extends StatefulWidget {
   @override
   _EmployeePageState createState() => _EmployeePageState();
@@ -28,9 +30,20 @@ class _EmployeePageState extends State<EmployeePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('ListView Employee'),
-          centerTitle: true,
-          backgroundColor: Colors.blue,
+         title: Text('All Employee', style: appbarTextStyle,),
+        centerTitle: true,
+        backgroundColor: appBarColor,
+        iconTheme: IconThemeData(color: appbarIconColor),
+
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        elevation: 0,
         ),
         body: Center(
           child: ListView.builder(
