@@ -30,7 +30,7 @@ class _EmployeePageState extends State<EmployeePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-         title: Text('All Employee', style: appbarTextStyle,),
+         title: Text('Employees', style: appbarTextStyle,),
         centerTitle: true,
         backgroundColor: appBarColor,
         iconTheme: IconThemeData(color: appbarIconColor),
@@ -57,18 +57,37 @@ class _EmployeePageState extends State<EmployeePage> {
                       Divider(height: 5.0),
                       ListTile(
                         title: Text(
-                          '${items[position].firstName}',
+                          '${items[position].firstName}  ${items[position].lastName}' ,
                           style: TextStyle(
                             fontSize: 22.0,
                             color: Colors.deepOrangeAccent,
                           ),
                         ),
-                        subtitle: Text(
-                          '${items[position].phone}',
-                          style: new TextStyle(
-                            fontSize: 18.0,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${items[position].gender}',
+                              style: new TextStyle(
+                                fontSize: 18.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            Text(
+                              '${items[position].phone}',
+                              style: new TextStyle(
+                                fontSize: 18.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            Text(
+                              '${items[position].jobId}',
+                              style: new TextStyle(
+                                fontSize: 18.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
                         ),
                         leading: Column(
                           children: <Widget>[

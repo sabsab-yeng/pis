@@ -18,7 +18,7 @@ class _CustomerPageState extends State<CustomerPage> {
   void initState() {
     super.initState();
 
-    db.getAllCustomer().then((customer) {
+    db.getAllCustomers().then((customer) {
       setState(() {
         customer.forEach((customer) {
           items.add(Customer.fromMap(customer));
@@ -32,7 +32,7 @@ class _CustomerPageState extends State<CustomerPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'All Customer',
+          'Customers',
           style: appbarTextStyle,
         ),
         centerTitle: true,
@@ -59,19 +59,45 @@ class _CustomerPageState extends State<CustomerPage> {
                 children: <Widget>[
                   Divider(height: 5.0),
                   ListTile(
-                    title: Text(
-                      '${items[position].firstName}',
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        color: Colors.deepOrangeAccent,
-                      ),
+                    title: Row(
+                      children: [
+                        Text(
+                          '${items[position].firstName}',
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            color: Colors.deepOrangeAccent,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          '${items[position].lastName}',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.deepOrangeAccent,
+                          ),
+                        ),
+                      ],
                     ),
-                    subtitle: Text(
-                      '${items[position].gender}',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontStyle: FontStyle.italic,
-                      ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${items[position].gender}',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        Text(
+                          '${items[position].phone}',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ],
                     ),
                     leading: Column(
                       children: <Widget>[
@@ -90,8 +116,8 @@ class _CustomerPageState extends State<CustomerPage> {
                         Expanded(
                           child: IconButton(
                             icon: const Icon(Icons.remove_circle_outline),
-                            onPressed: () =>
-                                _deleteCustomer(context, items[position], position),
+                            onPressed: () => _deleteCustomer(
+                                context, items[position], position),
                           ),
                         ),
                       ],
@@ -127,7 +153,7 @@ class _CustomerPageState extends State<CustomerPage> {
     );
 
     if (result == 'update') {
-      db.getAllCustomer().then((customers) {
+      db.getAllCustomers().then((customers) {
         setState(() {
           items.clear();
           customers.forEach((customer) {
@@ -146,7 +172,7 @@ class _CustomerPageState extends State<CustomerPage> {
     );
 
     if (result == 'save') {
-      db.getAllCustomer().then((customers) {
+      db.getAllCustomers().then((customers) {
         setState(() {
           items.clear();
           customers.forEach((customer) {
