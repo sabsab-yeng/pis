@@ -1,104 +1,140 @@
 import 'package:flutter/material.dart';
-import 'package:pis/ui/widgets/raised_button_widget.dart';
-
-import '../../ui_constant.dart';
+import 'package:pis/ui/screens/employee/emp_helper.dart';
+import 'package:pis/ui/screens/employee/emp_model.dart';
+import 'package:pis/ui/screens/employee/employee_input_page.dart';
 class EmployeePage extends StatefulWidget {
   @override
   _EmployeePageState createState() => _EmployeePageState();
 }
 
 class _EmployeePageState extends State<EmployeePage> {
+  List<Employee> items = List();
+  EmployeeDatabaseHelper db = EmployeeDatabaseHelper();
+
+  @override
+  void initState() {
+    super.initState();
+
+    db.getAllNotes().then((employee) {
+      setState(() {
+        employee.forEach((employee) {
+          items.add(Employee.fromMap(employee));
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-      appBar: AppBar(
-         elevation: 0,
-        iconTheme: IconThemeData(color: appbarIconColor),
-        title: Text(
-          'Employee',
-          style: appbarTextStyle,
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('ListView Employee'),
+          centerTitle: true,
+          backgroundColor: Colors.blue,
         ),
-        backgroundColor: appBarColor,
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Text(
-                "Empployee information",
-                style: appbarTextStyle,
-              ),
-              Flexible(
-                flex: 0,
-                child: Form(
-                  child: Flex(
-                    direction: Axis.vertical,
-                    children: [
-                      TextFormField(
-                       autofocus: true,
-                        decoration: InputDecoration(
-                          hintText: "First name",
-                          labelText: "First name",                        
+        body: Center(
+          child: ListView.builder(
+              itemCount: items.length,
+              padding: const EdgeInsets.all(15.0),
+              itemBuilder: (context, position) {
+                return Container(
+                  height: 140,
+                  child: Column(
+                    children: <Widget>[
+                      Divider(height: 5.0),
+                      ListTile(
+                        title: Text(
+                          '${items[position].firstName}',
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            color: Colors.deepOrangeAccent,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        autofocus: false,                           
-                        decoration: InputDecoration(
-                          hintText: "Last name",
-                          labelText: "Last name",
+                        subtitle: Text(
+                          '${items[position].phone}',
+                          style: new TextStyle(
+                            fontSize: 18.0,
+                            fontStyle: FontStyle.italic,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(                                         
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          hintText: "Gender",
-                          labelText: "Gender",
+                        leading: Column(
+                          children: <Widget>[
+                            Padding(padding: EdgeInsets.all(10.0)),
+                            CircleAvatar(
+                              backgroundColor: Colors.blueAccent,
+                              radius: 15.0,
+                              child: Text(
+                                '${items[position].id}',
+                                style: TextStyle(
+                                  fontSize: 22.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: IconButton(
+                                icon: const Icon(Icons.remove_circle_outline),
+                                onPressed: () => _deleteNote(
+                                    context, items[position], position),
+                              ),
+                            ),
+                          ],
                         ),
+                        onTap: () => _navigateToNote(context, items[position]),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                      keyboardType: TextInputType.phone,                     
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          hintText: "Phone number",
-                          labelText: "Phone number",
-                        ),
-                      ),
-                        TextFormField(                        
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          hintText: "Job ID",
-                          labelText: "Job ID",
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      RaisedButtonWidget(title: "Insert",onPressed: (){},),
                     ],
                   ),
-                ),
-              ),
-            ],
-          ),
+                );
+              }),
         ),
-      ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () => _createNewNote(context),
+        ),
     );
+  }
+
+  void _deleteNote(BuildContext context, Employee employee, int position) async {
+    db.deleteNote(employee.id).then((notes) {
+      setState(() {
+        items.removeAt(position);
+      });
+    });
+  }
+
+  void _navigateToNote(BuildContext context, Employee employee) async {
+    String result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EmployeeInfo(employee)),
+    );
+
+    if (result == 'update') {
+      db.getAllNotes().then((notes) {
+        setState(() {
+          items.clear();
+          notes.forEach((note) {
+            items.add(Employee.fromMap(note));
+          });
+        });
+      });
+    }
+  }
+
+  void _createNewNote(BuildContext context) async {
+    String result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EmployeeInfo(Employee('', '','','', ''))),
+    );
+
+    if (result == 'save') {
+      db.getAllNotes().then((employee) {
+        setState(() {
+          items.clear();
+          employee.forEach((employee) {
+            items.add(Employee.fromMap(employee));
+          });
+        });
+      });
+    }
   }
 }
