@@ -125,7 +125,7 @@ class _CustomerPageState extends State<CustomerPage> {
   void _createNewNote(BuildContext context) async {
     String result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => CustomerInfo(Customer('', '',''))),
+      MaterialPageRoute(builder: (context) => CustomerInfo(Customer('', '','',''))),
     );
 
     if (result == 'save') {

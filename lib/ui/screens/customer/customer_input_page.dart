@@ -92,6 +92,7 @@ class _CustomerInfoState extends State<CustomerInfo> {
   CustomerDatabaseHelper db = new CustomerDatabaseHelper();
  
   TextEditingController _firstNameController;
+  TextEditingController _lastNameController;
   TextEditingController _genderController;
   TextEditingController _phoneController;
  
@@ -100,8 +101,9 @@ class _CustomerInfoState extends State<CustomerInfo> {
     super.initState();
  
     _firstNameController = new TextEditingController(text: widget.customer.firstName);
+    _lastNameController = new TextEditingController(text: widget.customer.lastName);
     _genderController = new TextEditingController(text: widget.customer.gender);
-     _phoneController = new TextEditingController(text: widget.customer.phone);
+    _phoneController = new TextEditingController(text: widget.customer.phone);
   }
  
   @override
@@ -116,6 +118,11 @@ class _CustomerInfoState extends State<CustomerInfo> {
             TextField(
               controller: _firstNameController,
               decoration: InputDecoration(labelText: 'First Name'),
+            ),
+            Padding(padding: new EdgeInsets.all(5.0)),
+            TextField(
+              controller: _lastNameController,
+              decoration: InputDecoration(labelText: 'Last Name'),
             ),
             Padding(padding: new EdgeInsets.all(5.0)),
             TextField(
@@ -134,13 +141,19 @@ class _CustomerInfoState extends State<CustomerInfo> {
                   db.updateNote(Customer.fromMap({
                     'id': widget.customer.id,
                     'firstname': _firstNameController.text,
+                    'lastname': _lastNameController.text,
                     'gender': _genderController.text,
                     'phone': _phoneController.text,
                   })).then((_) {
                     Navigator.pop(context, 'update');
                   });
                 }else {
-                  db.saveNote(Customer(_firstNameController.text, _genderController.text, _phoneController.text)).then((_) {
+                  db.saveNote(Customer(
+                  _firstNameController.text, 
+                  _lastNameController.text, 
+                  _genderController.text, 
+                  _phoneController.text),
+                  ).then((_) {
                     Navigator.pop(context, 'save');
                   });
                 }

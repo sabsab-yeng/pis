@@ -11,6 +11,7 @@ class CustomerDatabaseHelper {
   final String tableCustomer = 'customerTable';
   final String columnId = 'id';
   final String columnFirstName = 'firstname';
+  final String columnlastName = 'lastname';
   final String columnGender = 'gender';
   final String columnPhone = 'phone';
  
@@ -29,7 +30,7 @@ class CustomerDatabaseHelper {
  
   initDb() async {
     String databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'pis.db');
+    String path = join(databasesPath, 'customer.db');
  
 //    await deleteDatabase(path); // just for testing
  
@@ -39,7 +40,7 @@ class CustomerDatabaseHelper {
  
   void _onCreate(Database db, int newVersion) async {
     await db.execute(
-        'CREATE TABLE $tableCustomer($columnId INTEGER PRIMARY KEY, $columnFirstName TEXT, $columnGender TEXT, $columnPhone TEXT)');
+        'CREATE TABLE $tableCustomer($columnId INTEGER PRIMARY KEY, $columnFirstName TEXT, $columnlastName TEXT, $columnGender TEXT, $columnPhone TEXT)');
   }
  
   Future<int> saveNote(Customer customer) async {
@@ -53,7 +54,7 @@ class CustomerDatabaseHelper {
  
   Future<List> getAllNotes() async {
     var dbClient = await db;
-    var result = await dbClient.query(tableCustomer, columns: [columnId, columnFirstName, columnGender, columnPhone]);
+    var result = await dbClient.query(tableCustomer, columns: [columnId, columnFirstName, columnlastName, columnGender, columnPhone]);
 //    var result = await dbClient.rawQuery('SELECT * FROM $tableNote');
  
     return result.toList();
@@ -67,7 +68,7 @@ class CustomerDatabaseHelper {
   Future<Customer> getNote(int id) async {
     var dbClient = await db;
     List<Map> result = await dbClient.query(tableCustomer,
-        columns: [columnId, columnFirstName, columnGender, columnPhone],
+        columns: [columnId, columnFirstName, columnlastName, columnGender, columnPhone],
         where: '$columnId = ?',
         whereArgs: [id]);
 //    var result = await dbClient.rawQuery('SELECT * FROM $tableNote WHERE $columnId = $id');
