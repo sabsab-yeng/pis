@@ -1,69 +1,50 @@
+
 class Employee {
-  int id;
-  String fname;
-  String lname;
-  String gender;
-  String phone;
-  String jobId;
-
- 
-  Employee(this.id, this.fname, this.lname, this.phone, this.gender, this.jobId);
- 
-  Map<String, dynamic> toMap() {
-    var map = <String, dynamic>{
-      'id': id,
-      'name': fname,
-      'lname' : lname,
-      'gender' : gender,
-      'phone' : phone,
-      'jobId' : jobId,
-    };
-    return map;
-  }
- 
-  Employee.fromMap(Map<String, dynamic> map) {
-    id = map['id'];
-    fname = map['name'];
-    lname = map['lname'];
-    gender = map['gender'];
-    phone = map['phone'];
-    jobId = map['jobId'];
-  }
-}
-
-
-
-class Note {
   int _id;
-  String _title;
-  String _description;
+  String _firstName;
+  String _lastName;
+  String _gender;
+  String _phone;
+  String _jobId;
  
-  Note(this._title, this._description);
+  Employee(this._firstName,this._lastName, this._gender, this._phone, this._jobId);
  
-  Note.map(dynamic obj) {
+  Employee.map(dynamic obj) {
     this._id = obj['id'];
-    this._title = obj['title'];
-    this._description = obj['description'];
+    this._firstName = obj['firstname'];
+    this._lastName = obj['lastname'];
+    this._gender = obj['gender'];
+    this._phone = obj['phone'];
+    this._jobId = obj['jobId'];
   }
  
   int get id => _id;
-  String get title => _title;
-  String get description => _description;
+  String get firstName => _firstName;
+  String get lastName => _lastName;
+  String get gender => _gender;
+  String get phone => _phone;
+  String get jobId => _jobId;
  
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
     if (_id != null) {
       map['id'] = _id;
     }
-    map['title'] = _title;
-    map['description'] = _description;
+    map['firstname'] = _firstName;
+    map['lastname'] = _lastName;
+    map['gender'] = _gender;
+    map['phone'] = _phone;
+    map['jobId'] = _jobId;
  
     return map;
   }
  
-  Note.fromMap(Map<String, dynamic> map) {
+  Employee.fromMap(Map<String, dynamic> map) {
     this._id = map['id'];
-    this._title = map['title'];
-    this._description = map['description'];
+    this._firstName = map['firstname'];
+    this._lastName = map['lastname'];
+    this._gender = map['gender'];
+    this._phone = map['phone'];
+    this._jobId = map['jobId'];
   }
 }
