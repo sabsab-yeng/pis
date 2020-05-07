@@ -4,7 +4,7 @@ import 'package:pis/ui/screens/customer/customer_model.dart';
 import 'package:sqflite/sqflite.dart';
  
 class CustomerDatabaseHelper {
-  static final CustomerDatabaseHelper _instance = new CustomerDatabaseHelper.internal();
+  static final CustomerDatabaseHelper _instance = CustomerDatabaseHelper.internal();
  
   factory CustomerDatabaseHelper() => _instance;
  
@@ -46,16 +46,12 @@ class CustomerDatabaseHelper {
   Future<int> saveNote(Customer customer) async {
     var dbClient = await db;
     var result = await dbClient.insert(tableCustomer, customer.toMap());
-//    var result = await dbClient.rawInsert(
-//        'INSERT INTO $tableNote ($columnTitle, $columnDescription) VALUES (\'${note.title}\', \'${note.description}\')');
- 
     return result;
   }
  
-  Future<List> getAllNotes() async {
+  Future<List> getAllCustomer() async {
     var dbClient = await db;
     var result = await dbClient.query(tableCustomer, columns: [columnId, columnFirstName, columnlastName, columnGender, columnPhone]);
-//    var result = await dbClient.rawQuery('SELECT * FROM $tableNote');
  
     return result.toList();
   }
@@ -65,14 +61,12 @@ class CustomerDatabaseHelper {
     return Sqflite.firstIntValue(await dbClient.rawQuery('SELECT COUNT(*) FROM $tableCustomer'));
   }
  
-  Future<Customer> getNote(int id) async {
+  Future<Customer> getCustomer(int id) async {
     var dbClient = await db;
     List<Map> result = await dbClient.query(tableCustomer,
         columns: [columnId, columnFirstName, columnlastName, columnGender, columnPhone],
         where: '$columnId = ?',
         whereArgs: [id]);
-//    var result = await dbClient.rawQuery('SELECT * FROM $tableNote WHERE $columnId = $id');
- 
     if (result.length > 0) {
       return new Customer.fromMap(result.first);
     }
@@ -80,17 +74,14 @@ class CustomerDatabaseHelper {
     return null;
   }
  
-  Future<int> deleteNote(int id) async {
+  Future<int> deleteCustomer(int id) async {
     var dbClient = await db;
     return await dbClient.delete(tableCustomer, where: '$columnId = ?', whereArgs: [id]);
-//    return await dbClient.rawDelete('DELETE FROM $tableNote WHERE $columnId = $id');
   }
  
-  Future<int> updateNote(Customer customer) async {
+  Future<int> updateCustomer(Customer customer) async {
     var dbClient = await db;
     return await dbClient.update(tableCustomer, customer.toMap(), where: "$columnId = ?", whereArgs: [customer.id]);
-//    return await dbClient.rawUpdate(
-//        'UPDATE $tableNote SET $columnTitle = \'${note.title}\', $columnDescription = \'${note.description}\' WHERE $columnId = ${note.id}');
   }
  
   Future close() async {

@@ -9,11 +9,11 @@ class CustomerInfo extends StatefulWidget {
   CustomerInfo(this.customer);
 
   @override
-  State<StatefulWidget> createState() => new _CustomerInfoState();
+  State<StatefulWidget> createState() => _CustomerInfoState();
 }
 
 class _CustomerInfoState extends State<CustomerInfo> {
-  CustomerDatabaseHelper db = new CustomerDatabaseHelper();
+  CustomerDatabaseHelper db = CustomerDatabaseHelper();
 
   TextEditingController _firstNameController;
   TextEditingController _lastNameController;
@@ -25,11 +25,11 @@ class _CustomerInfoState extends State<CustomerInfo> {
     super.initState();
 
     _firstNameController =
-        new TextEditingController(text: widget.customer.firstName);
+       TextEditingController(text: widget.customer.firstName);
     _lastNameController =
-        new TextEditingController(text: widget.customer.lastName);
-    _genderController = new TextEditingController(text: widget.customer.gender);
-    _phoneController = new TextEditingController(text: widget.customer.phone);
+       TextEditingController(text: widget.customer.lastName);
+    _genderController = TextEditingController(text: widget.customer.gender);
+    _phoneController = TextEditingController(text: widget.customer.phone);
   }
 
   @override
@@ -62,12 +62,12 @@ class _CustomerInfoState extends State<CustomerInfo> {
               controller: _firstNameController,
               decoration: InputDecoration(labelText: 'First Name'),
             ),
-            Padding(padding: new EdgeInsets.all(5.0)),
+            Padding(padding: EdgeInsets.all(5.0)),
             TextField(
               controller: _lastNameController,
               decoration: InputDecoration(labelText: 'Last Name'),
             ),
-            Padding(padding: new EdgeInsets.all(5.0)),
+            Padding(padding: EdgeInsets.all(5.0)),
             TextField(
               controller: _genderController,
               decoration: InputDecoration(labelText: 'Gender'),
@@ -76,7 +76,7 @@ class _CustomerInfoState extends State<CustomerInfo> {
               controller: _phoneController,
               decoration: InputDecoration(labelText: 'Phone'),
             ),
-            Padding(padding: new EdgeInsets.all(5.0)),
+            Padding(padding: EdgeInsets.all(5.0)),
             RaisedButton(
               child:
                   (widget.customer.id != null) ? Text('Update') : Text('Add'),
