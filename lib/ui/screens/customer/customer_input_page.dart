@@ -83,7 +83,7 @@ class _CustomerInfoState extends State<CustomerInfo> {
               onPressed: () {
                 if (widget.customer.id != null) {
                   db
-                      .updateNote(Customer.fromMap({
+                      .updateCustomer(Customer.fromMap({
                     'id': widget.customer.id,
                     'firstname': _firstNameController.text,
                     'lastname': _lastNameController.text,
@@ -95,7 +95,7 @@ class _CustomerInfoState extends State<CustomerInfo> {
                   });
                 } else {
                   db
-                      .saveNote(
+                      .saveCustomer(
                     Customer(
                         _firstNameController.text,
                         _lastNameController.text,

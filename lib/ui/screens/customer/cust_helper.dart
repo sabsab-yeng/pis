@@ -43,13 +43,13 @@ class CustomerDatabaseHelper {
         'CREATE TABLE $tableCustomer($columnId INTEGER PRIMARY KEY, $columnFirstName TEXT, $columnlastName TEXT, $columnGender TEXT, $columnPhone TEXT)');
   }
  
-  Future<int> saveNote(Customer customer) async {
+  Future<int> saveCustomer(Customer customer) async {
     var dbClient = await db;
     var result = await dbClient.insert(tableCustomer, customer.toMap());
     return result;
   }
  
-  Future<List> getAllCustomer() async {
+  Future<List> getAllCustomers() async {
     var dbClient = await db;
     var result = await dbClient.query(tableCustomer, columns: [columnId, columnFirstName, columnlastName, columnGender, columnPhone]);
  

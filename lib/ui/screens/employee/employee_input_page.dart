@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/employee/emp_helper.dart';
 import 'package:pis/ui/screens/employee/emp_model.dart';
-
 import '../../ui_constant.dart';
 
 class EmployeeInfo extends StatefulWidget {
@@ -89,7 +88,7 @@ class _EmployeeInfoState extends State<EmployeeInfo> {
               onPressed: () {
                 if (widget.employee.id != null) {
                   db
-                      .updateNote(Employee.fromMap({
+                      .updateEmployee(Employee.fromMap({
                     'id': widget.employee.id,
                     'firstname': _firstNameController.text,
                     'lastname': _lastNameController.text,
@@ -102,7 +101,7 @@ class _EmployeeInfoState extends State<EmployeeInfo> {
                   });
                 } else {
                   db
-                      .saveNote(Employee(
+                      .saveEmployee(Employee(
                           _firstNameController.text,
                           _lastNameController.text,
                           _genderController.text,

@@ -17,7 +17,7 @@ class _EmployeePageState extends State<EmployeePage> {
   void initState() {
     super.initState();
 
-    db.getAllNotes().then((employee) {
+    db.getAllEmployees().then((employee) {
       setState(() {
         employee.forEach((employee) {
           items.add(Employee.fromMap(employee));
@@ -87,13 +87,13 @@ class _EmployeePageState extends State<EmployeePage> {
                             Expanded(
                               child: IconButton(
                                 icon: const Icon(Icons.remove_circle_outline),
-                                onPressed: () => _deleteNote(
+                                onPressed: () => deleteEmployee(
                                     context, items[position], position),
                               ),
                             ),
                           ],
                         ),
-                        onTap: () => _navigateToNote(context, items[position]),
+                        onTap: () => _navigateToEmployee(context, items[position]),
                       ),
                     ],
                   ),
@@ -102,48 +102,48 @@ class _EmployeePageState extends State<EmployeePage> {
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: () => _createNewNote(context),
+          onPressed: () => _createNewEmployee(context),
         ),
     );
   }
 
-  void _deleteNote(BuildContext context, Employee employee, int position) async {
-    db.deleteNote(employee.id).then((notes) {
+  void deleteEmployee(BuildContext context, Employee employee, int position) async {
+    db.deleteEmployee(employee.id).then((employees) {
       setState(() {
         items.removeAt(position);
       });
     });
   }
 
-  void _navigateToNote(BuildContext context, Employee employee) async {
+  void _navigateToEmployee(BuildContext context, Employee employee) async {
     String result = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => EmployeeInfo(employee)),
     );
 
     if (result == 'update') {
-      db.getAllNotes().then((notes) {
+      db.getAllEmployees().then((employees) {
         setState(() {
           items.clear();
-          notes.forEach((note) {
-            items.add(Employee.fromMap(note));
+          employees.forEach((employee) {
+            items.add(Employee.fromMap(employee));
           });
         });
       });
     }
   }
 
-  void _createNewNote(BuildContext context) async {
+  void _createNewEmployee(BuildContext context) async {
     String result = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => EmployeeInfo(Employee('', '','','', ''))),
     );
 
     if (result == 'save') {
-      db.getAllNotes().then((employee) {
+      db.getAllEmployees().then((employees) {
         setState(() {
           items.clear();
-          employee.forEach((employee) {
+          employees.forEach((employee) {
             items.add(Employee.fromMap(employee));
           });
         });
