@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pis/ui/screens/customer/cust_helper.dart';
 import 'package:pis/ui/screens/customer/customer_model.dart';
 
@@ -90,37 +91,38 @@ class _CustomerPageState extends State<CustomerPage> {
                             fontStyle: FontStyle.italic,
                           ),
                         ),
-                        Text(
-                          '${items[position].phone}',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontStyle: FontStyle.italic,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '${items[position].phone}',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(FontAwesomeIcons.trash),
+                              onPressed: () => _deleteCustomer(
+                                  context, items[position], position),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    leading: Column(
-                      children: <Widget>[
-                        Padding(padding: EdgeInsets.all(10.0)),
-                        CircleAvatar(
-                          backgroundColor: Colors.blueAccent,
-                          radius: 15.0,
-                          child: Text(
-                            '${items[position].id}',
-                            style: TextStyle(
-                              fontSize: 22.0,
-                              color: Colors.white,
-                            ),
+                    leading: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.blueAccent,
+                        radius: 15.0,
+                        child: Text(
+                          '${items[position].id}',
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            color: Colors.white,
                           ),
                         ),
-                        Expanded(
-                          child: IconButton(
-                            icon: const Icon(Icons.remove_circle_outline),
-                            onPressed: () => _deleteCustomer(
-                                context, items[position], position),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                     onTap: () => _navigateToCustomer(context, items[position]),
                   ),
