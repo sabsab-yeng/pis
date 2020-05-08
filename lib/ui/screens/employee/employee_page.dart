@@ -19,8 +19,8 @@ class _EmployeePageState extends State<EmployeePage> {
 
     db.getAllEmployees().then((employee) {
       setState(() {
-        employee.forEach((employee) {
-          items.add(Employee.fromMap(employee));
+        employee.forEach((employees) {
+          items.add(Employee.fromMap(employees));
         });
       });
     });
@@ -127,7 +127,7 @@ class _EmployeePageState extends State<EmployeePage> {
   }
 
   void deleteEmployee(BuildContext context, Employee employee, int position) async {
-    db.deleteEmployee(employee.id).then((employees) {
+    db.deleteEmployee(employee.id).then((employee) {
       setState(() {
         items.removeAt(position);
       });
@@ -141,11 +141,11 @@ class _EmployeePageState extends State<EmployeePage> {
     );
 
     if (result == 'update') {
-      db.getAllEmployees().then((employees) {
+      db.getAllEmployees().then((employee) {
         setState(() {
           items.clear();
-          employees.forEach((employee) {
-            items.add(Employee.fromMap(employee));
+          employee.forEach((employees) {
+            items.add(Employee.fromMap(employees));
           });
         });
       });

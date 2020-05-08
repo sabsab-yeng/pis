@@ -32,9 +32,6 @@ class EmployeeDatabaseHelper {
   initDb() async {
     String databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'employee.db');
- 
-//    await deleteDatabase(path); // just for testing
- 
     var db = await openDatabase(path, version: 1, onCreate: _onCreate);
     return db;
   }
