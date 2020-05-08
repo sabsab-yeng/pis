@@ -4,6 +4,7 @@ import 'package:pis/ui/screens/drawer/example/home_page.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
+import 'joborder/job_page.dart';
 
 class ManagementPage extends StatefulWidget {
   @override
@@ -53,6 +54,8 @@ class _ManagementPageState extends State<ManagementPage> {
               Divider(),
               InkWellWidget(
                 onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => JobPage()));
                 },
                 title: "Job Order",
               ),
