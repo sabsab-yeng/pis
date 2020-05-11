@@ -4,6 +4,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:pis/ui/screens/drawer/joborder/job_data_helper.dart';
 import 'package:pis/ui/screens/drawer/joborder/job_detial_page.dart';
 import 'package:pis/ui/screens/drawer/joborder/job_model.dart';
+import 'dart:async';
+
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,6 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+    var refreshkey = GlobalKey<RefreshIndicatorState>();
   @override
   void initState() {
     super.initState();
@@ -29,12 +33,12 @@ class _HomePageState extends State<HomePage> {
         });
       });
     });
-
+    
     var android = AndroidInitializationSettings('mipmap/ic_launcher');
     var ios = IOSInitializationSettings();
 
     var platform = InitializationSettings(android, ios);
-
+    
     flutterLocalNotificationsPlugin.initialize(platform);
 
     //Intergrate with firebase
@@ -93,11 +97,26 @@ class _HomePageState extends State<HomePage> {
       await flutterLocalNotificationsPlugin.show(0, title, body, platForm);
     }
   }
+  Future<Null>refreshlist() async {
+     refreshkey.currentState?.show(
+       atTop: true);
+    await Future.delayed(Duration(seconds: 1));
+ db.getAllJobs().then((employee) {
+      setState(() {
+         items.clear();
+        employee.forEach((employees) {  
+          items.add(Job.fromMap(employees));
+        });
+      });
+    });
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: RefreshIndicator(
+         key: refreshkey,
         child: ListView.builder(
             itemCount: items.length,
             padding: const EdgeInsets.all(15.0),
@@ -171,6 +190,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             }),
+            onRefresh: refreshlist,
       ),
     );
   }
