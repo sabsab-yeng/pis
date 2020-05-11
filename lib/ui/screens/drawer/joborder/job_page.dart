@@ -32,7 +32,7 @@ class _JobPageState extends State<JobPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Employees',
+          'Job order',
           style: appbarTextStyle,
         ),
         centerTitle: true,
@@ -83,13 +83,24 @@ class _JobPageState extends State<JobPage> {
                               fontStyle: FontStyle.italic,
                             ),
                           ),
-                          Text(
-                            '${items[position].status}',
-                            style: new TextStyle(
-                              fontSize: 18.0,
-                              fontStyle: FontStyle.italic,
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '${items[position].status}',
+                                style: new TextStyle(
+                                  fontSize: 18.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                              IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () =>
+                                  deleteJob(context, items[position], position),
                             ),
+                            ],
                           ),
+
                           // Text(
                           //   '${items[position].description}',
                           //   style: new TextStyle(
@@ -113,11 +124,6 @@ class _JobPageState extends State<JobPage> {
                                   color: Colors.white,
                                 ),
                               ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.remove_circle_outline),
-                              onPressed: () =>
-                                  deleteJob(context, items[position], position),
                             ),
                           ],
                         ),

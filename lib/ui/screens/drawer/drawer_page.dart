@@ -68,13 +68,6 @@ class DrawerMenuPage extends StatelessWidget {
               },
             ),
             MenuDrawerWidget(
-              icon: Icons.language,
-              title: "SQFite",
-              onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=>DatatablePage()));
-              },
-            ),
-            MenuDrawerWidget(
               icon: Icons.dialpad,
               title: "Manage Data",
               onTap: () {

@@ -55,7 +55,7 @@ class _CustomerPageState extends State<CustomerPage> {
           padding: const EdgeInsets.all(15.0),
           itemBuilder: (context, position) {
             return Container(
-              height: 140,
+              height: 150,
               child: Column(
                 children: <Widget>[
                   Divider(height: 5.0),
