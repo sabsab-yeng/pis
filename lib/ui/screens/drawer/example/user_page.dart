@@ -3,25 +3,26 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/drawer/example/user_model.dart';
 
+import '../../../ui_constant.dart';
 import 'add_user_list.dart';
-import 'home_present.dart';
-import 'list.dart';
+import 'user_present.dart';
+import 'user_list.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class UserPage extends StatefulWidget {
+  UserPage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _UserPageState createState() => _UserPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> implements HomeContract {
-  HomePresenter homePresenter;
+class _UserPageState extends State<UserPage> implements UserContract {
+  UserPresenter homePresenter;
 
   @override
   void initState() {
     super.initState();
-    homePresenter = new HomePresenter(this);
+    homePresenter = UserPresenter(this);
   }
 
   displayRecord() {
@@ -32,18 +33,15 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     var horizontalTitleAlignment =
         Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.center;
 
-    return new InkWell(
-      child: new Padding(
+    return InkWell(
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: new Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: horizontalTitleAlignment,
           children: <Widget>[
-            new Text('User Database',
-              style: new TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+             Text('User Database',
+              style: appbarTextStyle
             ),
           ],
         ),
@@ -55,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     showDialog(
       context: context,
       builder: (BuildContext context) =>
-          new AddUserDialog().buildAboutDialog(context, this, false, null),
+         AddUserDialog().buildAboutDialog(context, this, false, null),
     );
 
     setState(() {});
@@ -63,10 +61,10 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
 
   List<Widget> _buildActions() {
     return <Widget>[
-      new IconButton(
+       IconButton(
         icon: const Icon(
-          Icons.group_add,
-          color: Colors.white,
+          Icons.add,
+          color: Colors.black,
         ),
         onPressed: _openAddUserDialog,
       ),
@@ -75,19 +73,33 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+       
+      appBar: AppBar(
         title: _buildTitle(context),
         actions: _buildActions(),
+         centerTitle: true,
+        backgroundColor: appBarColor,
+        iconTheme: IconThemeData(color: appbarIconColor),
+
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        elevation: 0,
       ),
-      body: new FutureBuilder<List<User>>(
+      body: FutureBuilder<List<User>>(
         future: homePresenter.getUser(),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
           var data = snapshot.data;
           return snapshot.hasData
-              ? new UserList(data,homePresenter)
-              : new Center(child: new CircularProgressIndicator());
+              ? UserList(data,homePresenter)
+              : Center(child: CircularProgressIndicator());
         },
       ),
     );

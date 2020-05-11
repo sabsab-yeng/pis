@@ -41,7 +41,7 @@ class DrawerMenuPage extends StatelessWidget {
             ),
             MenuDrawerWidget(
               icon: Icons.data_usage,
-              title: "Example Insert",
+              title: "Firebase Insert",
               onTap: () {
                 Navigator.push(
                     context,
@@ -65,13 +65,6 @@ class DrawerMenuPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => SettingPage()));
-              },
-            ),
-            MenuDrawerWidget(
-              icon: Icons.language,
-              title: "SQFite",
-              onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=>DatatablePage()));
               },
             ),
             MenuDrawerWidget(

@@ -20,7 +20,7 @@ class User {
   String get dob => _dob;
 
   Map<String, dynamic> toMap() {
-    var map = new Map<String, dynamic>();
+    var map = Map<String, dynamic>();
     map["firstname"] = _firstName;
     map["lastname"] = _lastName;
     map["dob"] = _dob;

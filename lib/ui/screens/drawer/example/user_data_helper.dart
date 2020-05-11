@@ -6,7 +6,7 @@ import 'package:pis/ui/screens/drawer/example/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = new DatabaseHelper.internal();
+  static final DatabaseHelper _instance = DatabaseHelper.internal();
   factory DatabaseHelper() => _instance;
   static Database _db;
 
@@ -40,10 +40,10 @@ class DatabaseHelper {
   Future<List<User>> getUser() async {
     var dbClient = await db;
     List<Map> list = await dbClient.rawQuery('SELECT * FROM User');
-    List<User> employees = new List();
+    List<User> employees = List();
     for (int i = 0; i < list.length; i++) {
       var user =
-          new User(list[i]["firstname"], list[i]["lastname"], list[i]["dob"]);
+         User(list[i]["firstname"], list[i]["lastname"], list[i]["dob"]);
       user.setUserId(list[i]["id"]);
       employees.add(user);
     }

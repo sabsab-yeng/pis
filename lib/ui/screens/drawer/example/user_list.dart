@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/drawer/example/user_model.dart';
 
 import 'add_user_list.dart';
-import 'home_present.dart';
+import 'user_present.dart';
 
 class UserList extends StatelessWidget {
   List<User> country;
-  HomePresenter homePresenter;
+  UserPresenter homePresenter;
 
   UserList(
     List<User> this.country,
-    HomePresenter this.homePresenter, {
+    UserPresenter this.homePresenter, {
     Key key,
   }) : super(key: key);
 

@@ -4,14 +4,14 @@ import 'dart:async';
 import 'package:pis/ui/screens/drawer/example/user_data_helper.dart';
 import 'package:pis/ui/screens/drawer/example/user_model.dart';
 
-abstract class HomeContract {
+abstract class UserContract {
   void screenUpdate();
 }
 
-class HomePresenter {
-  HomeContract _view;
+class UserPresenter {
+  UserContract _view;
   var db = DatabaseHelper();
-  HomePresenter(this._view);
+  UserPresenter(this._view);
   delete(User user) {
     var db = DatabaseHelper();
     db.deleteUsers(user);
