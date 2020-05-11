@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/customer/customer_page.dart';
-import 'package:pis/ui/screens/drawer/example/home_page.dart';
+import 'package:pis/ui/screens/drawer/example/user_page.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
@@ -63,7 +63,7 @@ class _ManagementPageState extends State<ManagementPage> {
               InkWellWidget(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyHomePage()));
+                      MaterialPageRoute(builder: (context) => UserPage()));
                 },
                 title: "Add user",
               ),
