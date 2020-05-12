@@ -91,20 +91,20 @@ class _HomePageState extends State<HomePage> {
       await flutterLocalNotificationsPlugin.show(0, title, body, platForm);
     }
   }
-  Future<Null>refreshlist() async {
-     refreshkey.currentState?.show(
-       atTop: true);
-    await Future.delayed(Duration(seconds: 1));
- db.getAllJobs().then((employee) {
-      setState(() {
-         items.clear();
-        employee.forEach((employees) {  
-          items.add(Job.fromMap(employees));
-        });
-      });
-    });
-    return null;
-  }
+//   Future<Null>refreshlist() async {
+//      refreshkey.currentState?.show(
+//        atTop: true);
+//     await Future.delayed(Duration(seconds: 1));
+//  db.getAllJobs().then((employee) {
+//       setState(() {
+//          items.clear();
+//         employee.forEach((employees) {  
+//           items.add(Job.fromMap(employees));
+//         });
+//       });
+//     });
+//     return null;
+//   }
 
   @override
   Widget build(BuildContext context) {
