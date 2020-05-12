@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pis/models/user.dart';
 import 'package:pis/services/user_service.dart';
 
@@ -172,7 +173,7 @@ class _MyHomePageState extends State<UserDashboard> implements AddUserCallback {
                       onPressed: () => showEditWidget(user, true),
                     ),
                    IconButton(
-                      icon: const Icon(Icons.delete_forever,
+                      icon: const Icon(FontAwesomeIcons.trash,
                           color: const Color(0xFF167F67)),
                       onPressed: () => deleteUser(user),
                     ),
