@@ -2,28 +2,28 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pis/models/employee.dart';
-import 'package:pis/services/employee_service.dart';
-import 'package:pis/ui/screens/employee/add_employee.dart';
+import 'package:pis/models/customer.dart';
+import 'package:pis/services/customer_service.dart';
+import 'package:pis/ui/screens/customer/add_customer.dart';
 import '../../ui_constant.dart';
 
-class EmployeePage extends StatefulWidget {
+class CustomerPage extends StatefulWidget {
   @override
-  _EmployeePageState createState() => _EmployeePageState();
+  _CustomerPageState createState() => _CustomerPageState();
 }
 
-class _EmployeePageState extends State<EmployeePage>
-    implements AddEmployeeCallback {
+class _CustomerPageState extends State<CustomerPage>
+    implements AddCustomerCallback {
   bool _anchorToBottom = false;
 
   // instance of util class
 
-  EmployeeUtil databaseUtil;
+  CustomerUtil databaseUtil;
 
   @override
   void initState() {
     super.initState();
-    databaseUtil = EmployeeUtil();
+    databaseUtil = CustomerUtil();
     databaseUtil.initState();
   }
 
@@ -44,7 +44,7 @@ class _EmployeePageState extends State<EmployeePage>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Employees', style: appbarTextStyle),
+              Text('Customers', style: appbarTextStyle),
             ],
           ),
         ),
@@ -84,7 +84,7 @@ class _EmployeePageState extends State<EmployeePage>
       // Firebase predefile list widget. It will get customer info from firebase database
       body: FirebaseAnimatedList(
         key: ValueKey<bool>(_anchorToBottom),
-        query: databaseUtil.getEmployee(),
+        query: databaseUtil.getCustomer(),
         reverse: _anchorToBottom,
         sort: _anchorToBottom
             ? (DataSnapshot a, DataSnapshot b) => b.key.compareTo(a.key)
@@ -93,16 +93,16 @@ class _EmployeePageState extends State<EmployeePage>
             Animation<double> animation, int index) {
           return SizeTransition(
             sizeFactor: animation,
-            child: showEmployees(snapshot),
+            child: showCustomer(snapshot),
           );
         },
       ),
     );
   }
 
-  //It will display a item in the list of employees.
-  Widget showEmployees(DataSnapshot res) {
-    Employee employee = Employee.fromSnapshot(res);
+  //It will display a item in the list of customers.
+  Widget showCustomer(DataSnapshot res) {
+    Customer customer = Customer.fromSnapshot(res);
 
     var item = Card(
       child: Container(
@@ -111,7 +111,7 @@ class _EmployeePageState extends State<EmployeePage>
               children: <Widget>[
                 CircleAvatar(
                   radius: 30.0,
-                  child: Text(getShortName(employee)),
+                  child: Text(getShortName(customer)),
                   backgroundColor: const Color(0xFF20283e),
                 ),
                 Expanded(
@@ -121,19 +121,19 @@ class _EmployeePageState extends State<EmployeePage>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          employee.firstname,
+                          customer.firstname,
                           // set some style to text
                           style: TextStyle(
                               fontSize: 20.0, color: Colors.lightBlueAccent),
                         ),
                         Text(
-                          employee.lastname,
+                          customer.lastname,
                           // set some style to text
                           style: TextStyle(
                               fontSize: 20.0, color: Colors.lightBlueAccent),
                         ),
                         Text(
-                          employee.phone,
+                          customer.phone,
                           // set some style to text
                           style: TextStyle(fontSize: 20.0, color: Colors.amber),
                         ),
@@ -149,12 +149,12 @@ class _EmployeePageState extends State<EmployeePage>
                         Icons.edit,
                         color: const Color(0xFF167F67),
                       ),
-                      onPressed: () => showEditWidget(employee, true),
+                      onPressed: () => showEditWidget(customer, true),
                     ),
                     IconButton(
                       icon: const Icon(FontAwesomeIcons.trash,
                           color: const Color(0xFF167F67)),
-                      onPressed: () => deleteEmployee(employee),
+                      onPressed: () => deleteCustomer(customer),
                     ),
                   ],
                 ),
@@ -167,45 +167,44 @@ class _EmployeePageState extends State<EmployeePage>
     return item;
   }
 
-  //Get first letter from the name of employee
-  String getShortName(Employee employee) {
+  //Get first letter from the name of customer
+  String getShortName(Customer customer) {
     String shortName = "";
-    if (!employee.firstname.isEmpty) {
-      shortName = employee.firstname.substring(0, 1);
+    if (!customer.firstname.isEmpty) {
+      shortName = customer.firstname.substring(0, 1);
     }
     return shortName;
   }
 
-  //Display popup in employee info update mode.
-  showEditWidget(Employee employee, bool isEdit) {
+  //Display popup in customer info update mode.
+  showEditWidget(Customer customer, bool isEdit) {
     showDialog(
       context: context,
       builder: (BuildContext context) =>
-          AddEmployeeDialog().buildAboutDialog(context, this, isEdit, employee),
+          AddCustomerDialog().buildAboutDialog(context, this, isEdit, customer),
     );
   }
 
   //Delete a entry from the Firebase console.
-  deleteEmployee(Employee employee) {
+  deleteCustomer(Customer customer) {
     setState(() {
-      databaseUtil.deleteEmployee(employee);
+      databaseUtil.deleteCustomer(customer);
     });
   }
 
-// Call util method for add employee information
+// Call util method for add customer information
   @override
-  void addEmployee(Employee employee) {
-      setState(() {
-      databaseUtil.addEmployee(employee);
+  void addCustomer(Customer customer) {
+    setState(() {
+      databaseUtil.addCustomer(customer);
     });
-    }
+  }
 
-    // call util method for update old data.
-  
-    @override
-    void updateEmployee(Employee employee) {
-     setState(() {
-      databaseUtil.updateEmployee(employee);
+  // call util method for update old data.
+  @override
+  void updateCustomer(Customer customer) {
+    setState(() {
+      databaseUtil.updateCustomer(customer);
     });
   }
 }
