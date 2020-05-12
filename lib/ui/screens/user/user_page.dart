@@ -2,28 +2,29 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pis/models/employee.dart';
-import 'package:pis/services/employee_service.dart';
-import 'package:pis/ui/screens/employee/add_employee.dart';
-import '../../ui_constant.dart';
+import 'package:pis/models/user.dart';
+import 'package:pis/services/user_service.dart';
 
-class EmployeePage extends StatefulWidget {
+import '../../ui_constant.dart';
+import 'add_user.dart';
+
+class UserDashboard extends StatefulWidget {
   @override
-  _EmployeePageState createState() => _EmployeePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _EmployeePageState extends State<EmployeePage>
-    implements AddEmployeeCallback {
+class _MyHomePageState extends State<UserDashboard> implements AddUserCallback {
+
   bool _anchorToBottom = false;
 
-  // instance of util class
+ // instance of util class
 
-  EmployeeUtil databaseUtil;
+ FirebaseDatabaseUtil databaseUtil;
 
   @override
   void initState() {
     super.initState();
-    databaseUtil = EmployeeUtil();
+    databaseUtil = FirebaseDatabaseUtil();
     databaseUtil.initState();
   }
 
@@ -35,29 +36,32 @@ class _EmployeePageState extends State<EmployeePage>
 
   @override
   Widget build(BuildContext context) {
-    // it will show title of screen
 
-    Widget _buildTitle(BuildContext context) {
+   // it will show title of screen
+
+   Widget _buildTitle(BuildContext context) {
       return InkWell(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Employees', style: appbarTextStyle),
+             Text(
+                'Users',
+                style: appbarTextStyle
+              ),
             ],
           ),
         ),
       );
     }
-
-//It will show new customer icon
+//It will show new user icon
     List<Widget> _buildActions() {
       return <Widget>[
-        IconButton(
+       IconButton(
           icon: const Icon(
             Icons.add,
-          ), // display pop for new entry
+          ),               // display pop for new entry
           onPressed: () => showEditWidget(null, false),
         ),
       ];
@@ -67,9 +71,10 @@ class _EmployeePageState extends State<EmployeePage>
       appBar: AppBar(
         title: _buildTitle(context),
         actions: _buildActions(),
-        centerTitle: true,
+         centerTitle: true,
         backgroundColor: appBarColor,
         iconTheme: IconThemeData(color: appbarIconColor),
+
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
@@ -79,12 +84,12 @@ class _EmployeePageState extends State<EmployeePage>
           },
         ),
         elevation: 0,
-      ),
+      ), 
 
-      // Firebase predefile list widget. It will get customer info from firebase database
+    // Firebase predefile list widget. It will get user info from firebase database
       body: FirebaseAnimatedList(
         key: ValueKey<bool>(_anchorToBottom),
-        query: databaseUtil.getEmployee(),
+        query: databaseUtil.getUser(),
         reverse: _anchorToBottom,
         sort: _anchorToBottom
             ? (DataSnapshot a, DataSnapshot b) => b.key.compareTo(a.key)
@@ -93,68 +98,84 @@ class _EmployeePageState extends State<EmployeePage>
             Animation<double> animation, int index) {
           return SizeTransition(
             sizeFactor: animation,
-            child: showEmployees(snapshot),
+            child: showUser(snapshot),
           );
         },
       ),
     );
+  } 
+
+ @override // Call util method for add user information
+  void addEmployee(User user) {
+    setState(() {
+      databaseUtil.addUser(user);
+    });
   }
 
-  //It will display a item in the list of employees.
-  Widget showEmployees(DataSnapshot res) {
-    Employee employee = Employee.fromSnapshot(res);
+  @override // call util method for update old data.
+  void updateEmployee(User user) {
+    setState(() {
+      databaseUtil.updateUser(user);
+    });
+  } 
+
+ //It will display a item in the list of users.
+
+ Widget showUser(DataSnapshot res) {
+    User user = User.fromSnapshot(res);
 
     var item = Card(
       child: Container(
           child: Center(
             child: Row(
               children: <Widget>[
-                CircleAvatar(
+               CircleAvatar(
                   radius: 30.0,
-                  child: Text(getShortName(employee)),
+                  child: Text(getShortName(user)),
                   backgroundColor: const Color(0xFF20283e),
                 ),
-                Expanded(
+                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.all(10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          employee.firstname,
+                       Text(
+                          user.name,
                           // set some style to text
                           style: TextStyle(
                               fontSize: 20.0, color: Colors.lightBlueAccent),
                         ),
-                        Text(
-                          employee.lastname,
+                       Text(
+                          user.email,
                           // set some style to text
                           style: TextStyle(
                               fontSize: 20.0, color: Colors.lightBlueAccent),
                         ),
-                        Text(
-                          employee.phone,
+                       Text(
+                          user.mobile,
                           // set some style to text
-                          style: TextStyle(fontSize: 20.0, color: Colors.amber),
+                          style: TextStyle(
+                              fontSize: 20.0, color: Colors.amber),
                         ),
                       ],
                     ),
                   ),
                 ),
-                Column(
+               Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    IconButton(
+                   IconButton(
                       icon: const Icon(
                         Icons.edit,
                         color: const Color(0xFF167F67),
                       ),
-                      onPressed: () => showEditWidget(employee, true),
+                      onPressed: () => showEditWidget(user, true),
                     ),
-                    IconButton(
+                   IconButton(
                       icon: const Icon(FontAwesomeIcons.trash,
                           color: const Color(0xFF167F67)),
-                      onPressed: () => deleteEmployee(employee),
+                      onPressed: () => deleteUser(user),
                     ),
                   ],
                 ),
@@ -166,46 +187,26 @@ class _EmployeePageState extends State<EmployeePage>
 
     return item;
   }
-
-  //Get first letter from the name of employee
-  String getShortName(Employee employee) {
+  //Get first letter from the name of user
+  String getShortName(User user) {
     String shortName = "";
-    if (!employee.firstname.isEmpty) {
-      shortName = employee.firstname.substring(0, 1);
+    if (!user.name.isEmpty) {
+      shortName = user.name.substring(0, 1);
     }
     return shortName;
   }
-
-  //Display popup in employee info update mode.
-  showEditWidget(Employee employee, bool isEdit) {
+  //Display popup in user info update mode.
+  showEditWidget(User user, bool isEdit) {
     showDialog(
       context: context,
       builder: (BuildContext context) =>
-          AddEmployeeDialog().buildAboutDialog(context, this, isEdit, employee),
+         AddUserDialog().buildAboutDialog(context, this, isEdit, user),
     );
   }
-
-  //Delete a entry from the Firebase console.
-  deleteEmployee(Employee employee) {
+ //Delete a entry from the Firebase console.
+  deleteUser(User user) {
     setState(() {
-      databaseUtil.deleteEmployee(employee);
-    });
-  }
-
-// Call util method for add employee information
-  @override
-  void addEmployee(Employee employee) {
-      setState(() {
-      databaseUtil.addEmployee(employee);
-    });
-    }
-
-    // call util method for update old data.
-  
-    @override
-    void updateEmployee(Employee employee) {
-     setState(() {
-      databaseUtil.updateEmployee(employee);
+      databaseUtil.deleteUser(user);
     });
   }
 }

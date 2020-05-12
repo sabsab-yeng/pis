@@ -1,12 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:pis/ui/screens/drawer/joborder/job_data_helper.dart';
-import 'package:pis/ui/screens/drawer/joborder/job_detial_page.dart';
-import 'package:pis/ui/screens/drawer/joborder/job_model.dart';
-import 'dart:async';
-
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,8 +8,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Job> items = List();
-  JobDatabaseHelper db = JobDatabaseHelper();
+  // List<Job> items = List();
+  // JobDatabaseHelper db = JobDatabaseHelper();
 
   FirebaseMessaging messaging = FirebaseMessaging();
 
@@ -26,14 +20,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     //Get the job from database
-    db.getAllJobs().then((employee) {
-      setState(() {
-        employee.forEach((employees) {
-          items.add(Job.fromMap(employees));
-        });
-      });
-    });
-    
+    // db.getAllJobs().then((employee) {
+    //   setState(() {
+    //     employee.forEach((employees) {
+    //       items.add(Job.fromMap(employees));
+    //     });
+    //   });
+    // });
+
     var android = AndroidInitializationSettings('mipmap/ic_launcher');
     var ios = IOSInitializationSettings();
 
@@ -115,82 +109,72 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RefreshIndicator(
-         key: refreshkey,
-        child: ListView.builder(
-            itemCount: items.length,
-            padding: const EdgeInsets.all(15.0),
-            itemBuilder: (context, position) {
-              return Container(
-                height: 140,
-                child: Column(
-                  children: <Widget>[
-                    Divider(height: 5.0),
-                    ListTile(
-                      title: Text(
-                        '${items[position].custid}  ${items[position].empid}',
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          color: Colors.deepOrangeAccent,
-                        ),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${items[position].datenow}',
-                            style: new TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '${items[position].dateInstall}',
-                                style: new TextStyle(
-                                  fontSize: 18.0,
-                                ),
-                              ),
-                              Text(
-                                '${items[position].status}',
-                                style: new TextStyle(
-                                    fontSize: 24.0, color: Colors.blue),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.blueAccent,
-                        radius: 40.0,
-                        child: Text(
-                          '${items[position].id}',
-                          style: TextStyle(
-                            fontSize: 22.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      // onTap: () => _navigateToJobDetail(context, items[position]),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => JobDetailPage(
-                              custid: "${items[position].custid}",
-                              empid: "${items[position].empid}",
-                              dateInstall: "${items[position].dateInstall}",
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              );
-            }),
-            onRefresh: refreshlist,
+      body: Center(
+        child: Text("Home"),
+      //   child: ListView.builder(
+      //       itemCount: items.length,
+      //       padding: const EdgeInsets.all(15.0),
+      //       itemBuilder: (context, position) {
+      //         return Container(
+      //           height: 140,
+      //           child: Column(
+      //             children: <Widget>[
+      //               Divider(height: 5.0),
+      //               ListTile(
+      //                 title: Text(
+      //                   '${items[position].custid}  ${items[position].empid}',
+      //                   style: TextStyle(
+      //                     fontSize: 22.0,
+      //                     color: Colors.deepOrangeAccent,
+      //                   ),
+      //                 ),
+      //                 subtitle: Column(
+      //                   crossAxisAlignment: CrossAxisAlignment.start,
+      //                   children: [
+      //                     Text(
+      //                       '${items[position].datenow}',
+      //                       style: new TextStyle(
+      //                         fontSize: 18.0,
+      //                       ),
+      //                     ),
+      //                     Row(
+      //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                       children: [
+      //                         Text(
+      //                           '${items[position].dateInstall}',
+      //                           style: new TextStyle(
+      //                             fontSize: 18.0,
+      //                           ),
+      //                         ),
+      //                         Text(
+      //                           '${items[position].status}',
+      //                           style: new TextStyle(
+      //                               fontSize: 24.0, color: Colors.blue),
+      //                         ),
+      //                       ],
+      //                     ),
+      //                   ],
+      //                 ),
+      //                 leading: CircleAvatar(
+      //                   backgroundColor: Colors.blueAccent,
+      //                   radius: 40.0,
+      //                   child: Text(
+      //                     '${items[position].id}',
+      //                     style: TextStyle(
+      //                       fontSize: 22.0,
+      //                       color: Colors.white,
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 // onTap: () => _navigateToJobDetail(context, items[position]),
+      //                 onTap: () {
+                      
+      //                 },
+      //               ),
+      //             ],
+      //           ),
+      //         );
+      //       }),
       ),
     );
   }

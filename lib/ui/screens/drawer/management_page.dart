@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pis/ui/screens/customer/customer_page.dart';
-import 'package:pis/ui/screens/drawer/example/user_page.dart';
+import 'package:pis/ui/screens/customer/page_customer.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
+import 'package:pis/ui/screens/user/user_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
-import 'joborder/job_page.dart';
-
 class ManagementPage extends StatefulWidget {
   @override
   _ManagementPageState createState() => _ManagementPageState();
@@ -54,8 +52,8 @@ class _ManagementPageState extends State<ManagementPage> {
               Divider(),
               InkWellWidget(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => JobPage()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => JobPage()));
                 },
                 title: "Job Order",
               ),
@@ -63,7 +61,7 @@ class _ManagementPageState extends State<ManagementPage> {
               InkWellWidget(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UserPage()));
+                      MaterialPageRoute(builder: (context) => UserDashboard()));
                 },
                 title: "Add user",
               ),
