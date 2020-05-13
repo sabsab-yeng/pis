@@ -206,7 +206,8 @@ class _MyHomePageState extends State<UserDashboard> implements AddUserCallback {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("ແຈ້ງເຕືອນ"),
+
+    title: Text("ແຈ້ງເຕືອນ", textAlign: TextAlign.center,),
     content: Text("ທ່ານຕ້ອງການລຶບຫຼືບໍ?"),
     actions: [
       cancelButton,
