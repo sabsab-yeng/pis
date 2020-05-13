@@ -154,7 +154,7 @@ class _EmployeePageState extends State<EmployeePage>
                     IconButton(
                       icon: const Icon(FontAwesomeIcons.trash,
                           color: const Color(0xFF167F67)),
-                      onPressed: () => deleteEmployee(employee),
+                      onPressed: () => showAlertDialog(context, employee),
                     ),
                   ],
                 ),
@@ -166,11 +166,46 @@ class _EmployeePageState extends State<EmployeePage>
 
     return item;
   }
+  showAlertDialog(BuildContext context, Employee employee) {
+
+  // set up the buttons
+  Widget cancelButton = FlatButton(
+    child: Text("No"),
+    onPressed:  () {
+      Navigator.pop(context);
+    },
+  );
+  Widget continueButton = FlatButton(
+    child: Text("Yes"),
+    onPressed:  () {
+      deleteEmployee(employee);
+      Navigator.pop(context);
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("ແຈ້ງເຕືອນ"),
+    content: Text("ທ່ານຕ້ອງການລຶບຫຼືບໍ?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
 
   //Get first letter from the name of employee
   String getShortName(Employee employee) {
     String shortName = "";
-    if (!employee.firstname.isEmpty) {
+    if (employee.firstname.isNotEmpty) {
       shortName = employee.firstname.substring(0, 1);
     }
     return shortName;
