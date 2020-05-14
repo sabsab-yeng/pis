@@ -6,21 +6,17 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:pis/models/job.dart';
 import 'package:pis/services/job_service.dart';
 
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  // List<Job> items = List();
-  // JobDatabaseHelper db = JobDatabaseHelper();
-
+ 
   bool _anchorToBottom = false;
-
   // instance of util class
-
   JobApiService databaseUtil;
-
   FirebaseMessaging messaging = FirebaseMessaging();
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -103,12 +99,12 @@ class _HomePageState extends State<HomePage> {
       await flutterLocalNotificationsPlugin.show(0, title, body, platForm);
     }
   }
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
- body: FirebaseAnimatedList(
+      body: FirebaseAnimatedList(
         key: ValueKey<bool>(_anchorToBottom),
         query: databaseUtil.getJob(),
         reverse: _anchorToBottom,
@@ -127,10 +123,18 @@ class _HomePageState extends State<HomePage> {
     
   }
   Widget showjob(DataSnapshot res) {
-    JobOrder job = JobOrder.fromSnapshot(res);
-
-    var item = Card(
-      child: Container(
+    JobOrder job = JobOrder.fromSnapshot(res); 
+  
+    var item = Card( 
+      child: new InkWell(
+         onTap: () {
+        // var route = new MaterialPageRoute(
+             //     builder: (BuildContext context) =>
+             //         new Detailjob( ),
+              //  );
+             //   Navigator.of(context).push(route);
+        },
+      child: Container(       
           child: Center(
             child: Row(
               children: <Widget>[
@@ -139,6 +143,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(getShortName(job)),
                   backgroundColor: const Color(0xFF20283e),
                 ),
+                
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.all(10.0),
@@ -146,48 +151,41 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
+                          
                           job.empid,
-                          // set some style to text
                           style: TextStyle(
                               fontSize: 18.0, color: Colors.lightBlueAccent),
                         ),
                         Text(
-                          job.dateNow,
-                          // set some style to text
-                          style: TextStyle(
-                              fontSize: 20.0, color: Colors.amber),
-                        ),
-                        Text(
-                          job.dateInstall,
-                          // set some style to text
+                          job.dateInstall,                        
                           style: TextStyle(fontSize: 20.0, color: Colors.amber),
                         ),
-                         Text(
+                        Align(
+                           alignment: Alignment.bottomRight,                     
+                         child: Text(                                                                          
                           job.status,
-                          // set some style to text
                           style: TextStyle(fontSize: 25.0, color: Colors.green),
-                        ),                      
-                      ],
-                    ),
+                          textAlign: TextAlign.end,                                                    
+                        ),
+                        )
+                      ],                       
+                    ),                 
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[                                  
-                  ],
-                ),
-              ],
-            ),
+                ),               
+              ],          
+            ),       
           ),
-          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
+          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),       
+      ),
     );
-
+    
     return item;
   }
+  
   String getShortName(JobOrder job) {
     String shortName = "";
-    if (job.custid.isNotEmpty) {
-      shortName = job.custid.substring(0, 1);
+    if (job.status.isNotEmpty) {
+      shortName = job.status.substring(0, 1);
     }
     return shortName;
   }
