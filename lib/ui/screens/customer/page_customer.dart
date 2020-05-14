@@ -18,12 +18,12 @@ class _CustomerPageState extends State<CustomerPage>
 
   // instance of util class
 
-  CustomerUtil databaseUtil;
+  CustomerApiService databaseUtil;
 
   @override
   void initState() {
     super.initState();
-    databaseUtil = CustomerUtil();
+    databaseUtil = CustomerApiService();
     databaseUtil.initState();
   }
 

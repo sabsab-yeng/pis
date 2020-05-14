@@ -3,28 +3,32 @@ import 'package:firebase_database/firebase_database.dart';
 class JobOrder {
 
   String _id;
-  String _name;
-  String _email;
-  String _age;
-  String _mobile;
+  String _custId;
+  String _empId;
+  String _dateNow;
+  String _dateInstall;
+  String _status;
 
-  JobOrder(this._id,this._name, this._email, this._age, this._mobile);
+  JobOrder(this._id,this._custId, this._empId, this._dateNow, this._dateInstall, this._status);
 
-  String get name => _name;
+  String get custid => _custId;
 
-  String get email => _email;
+  String get empid => _empId;
 
-  String get age => _age;
+  String get dateNow => _dateNow;
 
-  String get mobile => _mobile;
+  String get dateInstall => _dateInstall;
+
+  String get status => _status;
 
   String get id => _id;
 
   JobOrder.fromSnapshot(DataSnapshot snapshot) {
     _id = snapshot.key;
-    _name = snapshot.value['name'];
-    _email = snapshot.value['email'];
-    _age = snapshot.value['age'];
-    _mobile = snapshot.value['mobile'];
+    _custId = snapshot.value['custId'];
+    _empId = snapshot.value['empId'];
+    _dateNow = snapshot.value['dateNow'];
+    _dateInstall = snapshot.value['dateInstall'];
+    _status = snapshot.value['status'];
   }
 }

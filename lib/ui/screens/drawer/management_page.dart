@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/customer/page_customer.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
+import 'package:pis/ui/screens/job/job_page.dart';
 import 'package:pis/ui/screens/user/user_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
+
 class ManagementPage extends StatefulWidget {
   @override
   _ManagementPageState createState() => _ManagementPageState();
@@ -52,12 +54,12 @@ class _ManagementPageState extends State<ManagementPage> {
               Divider(),
               InkWellWidget(
                 onTap: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => JobPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => JobPage()));
                 },
                 title: "Job Order",
               ),
-               Divider(),
+              Divider(),
               InkWellWidget(
                 onTap: () {
                   Navigator.push(context,
