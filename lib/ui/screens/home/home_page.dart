@@ -1,6 +1,10 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:pis/models/job.dart';
+import 'package:pis/services/job_service.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,6 +14,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // List<Job> items = List();
   // JobDatabaseHelper db = JobDatabaseHelper();
+
+  bool _anchorToBottom = false;
+
+  // instance of util class
+
+  JobApiService databaseUtil;
 
   FirebaseMessaging messaging = FirebaseMessaging();
 
@@ -27,6 +37,8 @@ class _HomePageState extends State<HomePage> {
     //     });
     //   });
     // });
+    databaseUtil = JobApiService();
+    databaseUtil.initState();
 
     var android = AndroidInitializationSettings('mipmap/ic_launcher');
     var ios = IOSInitializationSettings();
@@ -91,91 +103,92 @@ class _HomePageState extends State<HomePage> {
       await flutterLocalNotificationsPlugin.show(0, title, body, platForm);
     }
   }
-//   Future<Null>refreshlist() async {
-//      refreshkey.currentState?.show(
-//        atTop: true);
-//     await Future.delayed(Duration(seconds: 1));
-//  db.getAllJobs().then((employee) {
-//       setState(() {
-//          items.clear();
-//         employee.forEach((employees) {  
-//           items.add(Job.fromMap(employees));
-//         });
-//       });
-//     });
-//     return null;
-//   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Home"),
-      //   child: ListView.builder(
-      //       itemCount: items.length,
-      //       padding: const EdgeInsets.all(15.0),
-      //       itemBuilder: (context, position) {
-      //         return Container(
-      //           height: 140,
-      //           child: Column(
-      //             children: <Widget>[
-      //               Divider(height: 5.0),
-      //               ListTile(
-      //                 title: Text(
-      //                   '${items[position].custid}  ${items[position].empid}',
-      //                   style: TextStyle(
-      //                     fontSize: 22.0,
-      //                     color: Colors.deepOrangeAccent,
-      //                   ),
-      //                 ),
-      //                 subtitle: Column(
-      //                   crossAxisAlignment: CrossAxisAlignment.start,
-      //                   children: [
-      //                     Text(
-      //                       '${items[position].datenow}',
-      //                       style: new TextStyle(
-      //                         fontSize: 18.0,
-      //                       ),
-      //                     ),
-      //                     Row(
-      //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //                       children: [
-      //                         Text(
-      //                           '${items[position].dateInstall}',
-      //                           style: new TextStyle(
-      //                             fontSize: 18.0,
-      //                           ),
-      //                         ),
-      //                         Text(
-      //                           '${items[position].status}',
-      //                           style: new TextStyle(
-      //                               fontSize: 24.0, color: Colors.blue),
-      //                         ),
-      //                       ],
-      //                     ),
-      //                   ],
-      //                 ),
-      //                 leading: CircleAvatar(
-      //                   backgroundColor: Colors.blueAccent,
-      //                   radius: 40.0,
-      //                   child: Text(
-      //                     '${items[position].id}',
-      //                     style: TextStyle(
-      //                       fontSize: 22.0,
-      //                       color: Colors.white,
-      //                     ),
-      //                   ),
-      //                 ),
-      //                 // onTap: () => _navigateToJobDetail(context, items[position]),
-      //                 onTap: () {
-                      
-      //                 },
-      //               ),
-      //             ],
-      //           ),
-      //         );
-      //       }),
+
+
+ body: FirebaseAnimatedList(
+        key: ValueKey<bool>(_anchorToBottom),
+        query: databaseUtil.getJob(),
+        reverse: _anchorToBottom,
+        sort: _anchorToBottom
+            ? (DataSnapshot a, DataSnapshot b) => b.key.compareTo(a.key)
+            : null,
+        itemBuilder: (BuildContext context, DataSnapshot snapshot,
+            Animation<double> animation, int index) {
+          return SizeTransition(
+            sizeFactor: animation,
+            child: showjob(snapshot),
+          );
+        },
       ),
     );
+    
+  }
+  Widget showjob(DataSnapshot res) {
+    JobOrder job = JobOrder.fromSnapshot(res);
+
+    var item = Card(
+      child: Container(
+          child: Center(
+            child: Row(
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 30.0,
+                  child: Text(getShortName(job)),
+                  backgroundColor: const Color(0xFF20283e),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          job.empid,
+                          // set some style to text
+                          style: TextStyle(
+                              fontSize: 18.0, color: Colors.lightBlueAccent),
+                        ),
+                        Text(
+                          job.dateNow,
+                          // set some style to text
+                          style: TextStyle(
+                              fontSize: 20.0, color: Colors.amber),
+                        ),
+                        Text(
+                          job.dateInstall,
+                          // set some style to text
+                          style: TextStyle(fontSize: 20.0, color: Colors.amber),
+                        ),
+                         Text(
+                          job.status,
+                          // set some style to text
+                          style: TextStyle(fontSize: 25.0, color: Colors.green),
+                        ),                      
+                      ],
+                    ),
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[                                  
+                  ],
+                ),
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
+    );
+
+    return item;
+  }
+  String getShortName(JobOrder job) {
+    String shortName = "";
+    if (job.custid.isNotEmpty) {
+      shortName = job.custid.substring(0, 1);
+    }
+    return shortName;
   }
 }
