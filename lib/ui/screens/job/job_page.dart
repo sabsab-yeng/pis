@@ -170,7 +170,7 @@ class _JobPageState extends State<JobPage>
   String getShortName(JobOrder jobOrder) {
     String shortName = "";
     if (!jobOrder.status.isEmpty) {
-      shortName = jobOrder.status.substring(0, 1);
+      shortName = jobOrder.status.substring(0, 3);
     }
     return shortName;
   }
