@@ -12,8 +12,7 @@ class JobPage extends StatefulWidget {
   _JobPageState createState() => _JobPageState();
 }
 
-class _JobPageState extends State<JobPage>
-    implements AddJobOrderCallback {
+class _JobPageState extends State<JobPage> implements AddJobOrderCallback {
   bool _anchorToBottom = false;
 
   // instance of util class
@@ -105,62 +104,63 @@ class _JobPageState extends State<JobPage>
     JobOrder jobOrder = JobOrder.fromSnapshot(res);
     var item = Card(
       child: Container(
-          child: Center(
-            child: Row(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 30.0,
-                  child: Text(getShortName(jobOrder)),
-                  backgroundColor: const Color(0xFF20283e),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          jobOrder.custid,
-                          // set some style to text
-                          style: TextStyle(
-                              fontSize: 20.0, color: Colors.lightBlueAccent),
-                        ),
-                        Text(
-                          jobOrder.empid,
-                          // set some style to text
-                          style: TextStyle(
-                              fontSize: 20.0, color: Colors.lightBlueAccent),
-                        ),
-                        Text(
-                          jobOrder.dateInstall,
-                          // set some style to text
-                          style: TextStyle(fontSize: 20.0, color: Colors.amber),
-                        ),
-                      ],
-                    ),
+        child: Center(
+          child: Row(
+            children: <Widget>[
+              CircleAvatar(
+                radius: 30.0,
+                child: Text(getShortName(jobOrder)),
+                backgroundColor: const Color(0xFF20283e),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        jobOrder.custid,
+                        // set some style to text
+                        style: TextStyle(
+                            fontSize: 20.0, color: Colors.lightBlueAccent),
+                      ),
+                      Text(
+                        jobOrder.empid,
+                        // set some style to text
+                        style: TextStyle(
+                            fontSize: 20.0, color: Colors.lightBlueAccent),
+                      ),
+                      Text(
+                        jobOrder.dateInstall,
+                        // set some style to text
+                        style: TextStyle(fontSize: 20.0, color: Colors.amber),
+                      ),
+                    ],
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    IconButton(
-                      icon: const Icon(
-                        Icons.edit,
-                        color: const Color(0xFF167F67),
-                      ),
-                      onPressed: () => showEditWidget(jobOrder, true),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  IconButton(
+                    icon: const Icon(
+                      Icons.edit,
+                      color: const Color(0xFF167F67),
                     ),
-                    IconButton(
-                      icon: const Icon(FontAwesomeIcons.trash,
-                          color: const Color(0xFF167F67)),
-                      onPressed: () => deleteCustomer(jobOrder),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                    onPressed: () => showEditWidget(jobOrder, true),
+                  ),
+                  IconButton(
+                    icon: const Icon(FontAwesomeIcons.trash,
+                        color: const Color(0xFF167F67)),
+                    onPressed: () => deleteCustomer(jobOrder),
+                  ),
+                ],
+              ),
+            ],
           ),
-          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
+        ),
+        padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+      ),
     );
 
     return item;

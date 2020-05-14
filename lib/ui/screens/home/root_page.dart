@@ -27,6 +27,7 @@ class _RootPageState extends State<RootPage> {
     return Scaffold(
       drawer: DrawerMenuPage(),
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: appBarColor,
        iconTheme: IconThemeData(color: appbarIconColor),
         centerTitle: true,

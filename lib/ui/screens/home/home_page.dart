@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:pis/models/job.dart';
 import 'package:pis/services/job_service.dart';
-
+import 'package:pis/ui/screens/job/job_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,7 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
- 
   bool _anchorToBottom = false;
   // instance of util class
   JobApiService databaseUtil;
@@ -21,7 +20,7 @@ class _HomePageState extends State<HomePage> {
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-    var refreshkey = GlobalKey<RefreshIndicatorState>();
+  var refreshkey = GlobalKey<RefreshIndicatorState>();
   @override
   void initState() {
     super.initState();
@@ -40,7 +39,7 @@ class _HomePageState extends State<HomePage> {
     var ios = IOSInitializationSettings();
 
     var platform = InitializationSettings(android, ios);
-    
+
     flutterLocalNotificationsPlugin.initialize(platform);
 
     //Intergrate with firebase
@@ -100,7 +99,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,68 +118,71 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
-    
   }
+
   Widget showjob(DataSnapshot res) {
-    JobOrder job = JobOrder.fromSnapshot(res); 
-  
-    var item = Card( 
-      child: new InkWell(
-         onTap: () {
-        // var route = new MaterialPageRoute(
-             //     builder: (BuildContext context) =>
-             //         new Detailjob( ),
-              //  );
-             //   Navigator.of(context).push(route);
+    JobOrder job = JobOrder.fromSnapshot(res);
+
+    var item = Card(
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => JobDetialPage(
+                        id: job.id,
+                        dateInstall: job.dateInstall,
+                        status: job.status,
+                      )));
         },
-      child: Container(       
-          child: Center(
-            child: Row(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 30.0,
-                  child: Text(getShortName(job)),
-                  backgroundColor: const Color(0xFF20283e),
-                ),
-                
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          
-                          job.empid,
-                          style: TextStyle(
-                              fontSize: 18.0, color: Colors.lightBlueAccent),
-                        ),
-                        Text(
-                          job.dateInstall,                        
-                          style: TextStyle(fontSize: 20.0, color: Colors.amber),
-                        ),
-                        Align(
-                           alignment: Alignment.bottomRight,                     
-                         child: Text(                                                                          
-                          job.status,
-                          style: TextStyle(fontSize: 25.0, color: Colors.green),
-                          textAlign: TextAlign.end,                                                    
-                        ),
-                        )
-                      ],                       
-                    ),                 
+        child: Container(
+            child: Center(
+              child: Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    radius: 30.0,
+                    child: Text(getShortName(job)),
+                    backgroundColor: const Color(0xFF20283e),
                   ),
-                ),               
-              ],          
-            ),       
-          ),
-          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),       
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            job.empid,
+                            style: TextStyle(
+                                fontSize: 18.0, color: Colors.lightBlueAccent),
+                          ),
+                          Text(
+                            job.dateInstall,
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.amber),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Text(
+                              job.status,
+                              style: TextStyle(
+                                  fontSize: 25.0, color: Colors.green),
+                              textAlign: TextAlign.end,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
       ),
     );
-    
+
     return item;
   }
-  
+
   String getShortName(JobOrder job) {
     String shortName = "";
     if (job.status.isNotEmpty) {

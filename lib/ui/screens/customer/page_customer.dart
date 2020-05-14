@@ -17,7 +17,6 @@ class _CustomerPageState extends State<CustomerPage>
   bool _anchorToBottom = false;
 
   // instance of util class
-
   CustomerApiService databaseUtil;
 
   @override
@@ -103,7 +102,6 @@ class _CustomerPageState extends State<CustomerPage>
   //It will display a item in the list of customers.
   Widget showCustomer(DataSnapshot res) {
     Customer customer = Customer.fromSnapshot(res);
-
     var item = Card(
       child: Container(
           child: Center(
@@ -209,7 +207,9 @@ class _CustomerPageState extends State<CustomerPage>
   String getShortName(Customer customer) {
     String shortName = "";
     if (customer.firstname.isNotEmpty && customer.lastname.isNotEmpty) {
-      shortName = customer.firstname.substring(0, 1) + "." + customer.lastname.substring(0, 1);
+      shortName = customer.firstname.substring(0, 1) +
+          "." +
+          customer.lastname.substring(0, 1);
     }
     return shortName;
   }
