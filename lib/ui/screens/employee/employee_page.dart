@@ -205,8 +205,8 @@ class _EmployeePageState extends State<EmployeePage>
   //Get first letter from the name of employee
   String getShortName(Employee employee) {
     String shortName = "";
-    if (employee.firstname.isNotEmpty) {
-      shortName = employee.firstname.substring(0, 1);
+    if (employee.firstname.isNotEmpty && employee.lastname.isNotEmpty) {
+      shortName = employee.firstname.substring(0, 1)+ "." + employee.lastname.substring(0,1) ;
     }
     return shortName;
   }
