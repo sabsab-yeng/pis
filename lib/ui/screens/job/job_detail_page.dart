@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pis/ui/widgets/raised_button_widget.dart';
 
 import '../../ui_constant.dart';
 
@@ -18,7 +19,7 @@ class _JobDetialPageState extends State<JobDetialPage> {
       appBar: AppBar(
         backgroundColor: appBarColor,
         title: Text(
-          'Job Detail',
+          'Job Detial',
           style: appbarTextStyle,
         ),
         elevation: 0,
@@ -48,6 +49,10 @@ class _JobDetialPageState extends State<JobDetialPage> {
                 height: 20,
               ),
               Text(widget.status),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButtonWidget(title: "Site survey", onPressed: (){},)
             ],
           ),
         ),
