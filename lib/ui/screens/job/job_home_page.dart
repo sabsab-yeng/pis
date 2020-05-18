@@ -1,25 +1,17 @@
-
 import 'dart:async';
-
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:pis/models/job.dart';
 import 'package:pis/ui/screens/job/job_detial_page.dart';
 
-class HomePage extends StatefulWidget {
+class JobHomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _JobHomePageState createState() => _JobHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  FirebaseMessaging messaging = FirebaseMessaging();
+final notesReference = FirebaseDatabase.instance.reference().child('jobOrder');
 
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-  var refreshkey = GlobalKey<RefreshIndicatorState>();
-
+class _JobHomePageState extends State<JobHomePage> {
   List<JobOrder> items;
   StreamSubscription<Event> _onNoteAddedSubscription;
   StreamSubscription<Event> _onNoteChangedSubscription;
@@ -28,53 +20,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    //Fetch Data for firebase 
-      items = List();
+    items = List();
 
     _onNoteAddedSubscription = notesReference.onChildAdded.listen(_onJobAdded);
     _onNoteChangedSubscription =
         notesReference.onChildChanged.listen(_onNoteUpdated);
-   
-    var android = AndroidInitializationSettings('mipmap/ic_launcher');
-    var ios = IOSInitializationSettings();
-
-    var platform = InitializationSettings(android, ios);
-
-    flutterLocalNotificationsPlugin.initialize(platform);
-
-    //Intergrate with firebase
-    messaging.configure(
-        //Running message
-        onLaunch: (Map<String, dynamic> msg) {
-      print('onLaunch called $msg');
-    },
-
-        //Stop message
-        onResume: (Map<String, dynamic> msg) {
-      print('onResume called $msg');
-    },
-
-        //Display message
-        onMessage: (Map<String, dynamic> msg) {
-      showNotificationMessage(msg);
-
-      print('onMessage called $msg');
-    });
-
-    messaging.requestNotificationPermissions(const IosNotificationSettings(
-      sound: true,
-      alert: true,
-      badge: true,
-    ));
-
-    //Register Notification console
-    messaging.onIosSettingsRegistered.listen((IosNotificationSettings setting) {
-      print('IOS setting registered');
-    });
-
-    messaging.getToken().then((token) {
-      update(token);
-    });
   }
 
   @override
@@ -82,29 +32,6 @@ class _HomePageState extends State<HomePage> {
     _onNoteAddedSubscription.cancel();
     _onNoteChangedSubscription.cancel();
     super.dispose();
-  }
-
-
-  update(String token) {
-    print(token);
-    setState(() {});
-  }
-
-  //Display Notification
-  showNotificationMessage(Map<String, dynamic> msg) async {
-    print("showNotificationMessage $msg");
-    //{notification: {title: New Job near you Created, body: 1001}, data: {my_another_key: 1001, my_key: new job}}
-    if (msg['notification'] != null) {
-      var android = AndroidNotificationDetails('Id', 'Name', 'Description',
-          importance: Importance.Max, priority: Priority.High);
-      var iOS = IOSNotificationDetails();
-      var platForm = NotificationDetails(android, iOS);
-
-      String title = msg['notification']['title'];
-      String body = msg['notification']['body'];
-
-      await flutterLocalNotificationsPlugin.show(0, title, body, platForm);
-    }
   }
 
   @override

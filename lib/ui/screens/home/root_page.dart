@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/alter/alert_page.dart';
 import 'package:pis/ui/screens/drawer/drawer_page.dart';
 import 'package:pis/ui/screens/home/home_page.dart';
-import 'package:pis/ui/screens/job/job_page.dart';
+import 'package:pis/ui/screens/job/job_home_page.dart';
 import 'package:pis/ui/screens/plan/plan_list_page.dart';
-
 import '../../ui_constant.dart';
 
 class RootPage extends StatefulWidget {
@@ -14,7 +13,7 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int _currentIndex = 0;
-  final List<Widget> _children = [HomePage(), JobPage(), PlanListPage()];
+  final List<Widget> _children = [HomePage(), JobHomePage(), PlanListPage()];
 
   void onTabTapped(int index) {
     setState(() {
