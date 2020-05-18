@@ -114,10 +114,9 @@
 //   void updateJob(JobOrder example);
 // }
 
-
-
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:intl/intl.dart';
 import 'package:pis/models/job.dart';
 
 import '../../ui_constant.dart';
@@ -135,7 +134,7 @@ final jobsReference = FirebaseDatabase.instance.reference().child('jobOrder');
 class _AddJobPageState extends State<AddJobPage> {
   TextEditingController _customerIDController;
   TextEditingController _employeeIDController;
-  TextEditingController _dateNowController;
+  TextEditingController _dateNowController = TextEditingController();
   TextEditingController _dateInstallController;
   TextEditingController _statusController;
 
@@ -149,9 +148,26 @@ class _AddJobPageState extends State<AddJobPage> {
         TextEditingController(text: widget.job.dateInstall);
     _statusController = TextEditingController(text: widget.job.status);
   }
+  String _selectedDateInstall = 'Tap to select date install';
 
+  Future<void> _selectDateInstall(BuildContext context) async {
+    final DateTime d = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime(2090),
+    );
+    if (d != null)
+      setState(() {
+        _selectedDateInstall = DateFormat.yMd("en_US").format(d);
+      });
+  }
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBarColor,
@@ -172,7 +188,7 @@ class _AddJobPageState extends State<AddJobPage> {
         ),
       ),
       body: SingleChildScrollView(
-              child: Container(
+        child: Container(
           margin: EdgeInsets.all(15.0),
           alignment: Alignment.center,
           child: Column(
@@ -190,12 +206,31 @@ class _AddJobPageState extends State<AddJobPage> {
               Padding(padding: EdgeInsets.all(5.0)),
               TextField(
                 controller: _dateNowController,
-                decoration: InputDecoration(labelText: 'Date now'),
+                decoration: InputDecoration(
+                  labelText:  _dateNowController.text = formattedDate.toString(),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.calendar_today),
+                    tooltip: 'Tap to open date now',
+                    onPressed: () {
+                      _dateNowController.text = formattedDate.toString();
+                    },
+                  ),
+                ),
               ),
               Padding(padding: EdgeInsets.all(5.0)),
               TextField(
                 controller: _dateInstallController,
-                decoration: InputDecoration(labelText: 'Date install'),
+                decoration: InputDecoration(
+                  hintText: _selectedDateInstall,
+                  labelText: 'Date install',
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.calendar_today),
+                    tooltip: 'Tap to open date install',
+                    onPressed: () {
+                      _selectDateInstall(context);
+                    },
+                  ),
+                ),
               ),
               Padding(padding: EdgeInsets.all(5.0)),
               TextField(
@@ -235,6 +270,4 @@ class _AddJobPageState extends State<AddJobPage> {
       ),
     );
   }
-   
 }
-
