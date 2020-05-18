@@ -51,8 +51,8 @@ class _RootPageState extends State<RootPage> {
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            title: Text('Order'),
+            icon: Icon(Icons.history),
+            title: Text('History'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.place),
