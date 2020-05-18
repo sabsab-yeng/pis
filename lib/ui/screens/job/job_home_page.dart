@@ -9,12 +9,12 @@ class JobHomePage extends StatefulWidget {
   _JobHomePageState createState() => _JobHomePageState();
 }
 
-final notesReference = FirebaseDatabase.instance.reference().child('jobOrder');
+final jobsReference = FirebaseDatabase.instance.reference().child('jobOrder');
 
 class _JobHomePageState extends State<JobHomePage> {
   List<JobOrder> items;
-  StreamSubscription<Event> _onNoteAddedSubscription;
-  StreamSubscription<Event> _onNoteChangedSubscription;
+  StreamSubscription<Event> _onJobAddedSubscription;
+  StreamSubscription<Event> _onJobChangedSubscription;
 
   @override
   void initState() {
@@ -22,15 +22,15 @@ class _JobHomePageState extends State<JobHomePage> {
 
     items = List();
 
-    _onNoteAddedSubscription = notesReference.onChildAdded.listen(_onJobAdded);
-    _onNoteChangedSubscription =
-        notesReference.onChildChanged.listen(_onNoteUpdated);
+    _onJobAddedSubscription = jobsReference.onChildAdded.listen(_onJobAdded);
+    _onJobChangedSubscription =
+        jobsReference.onChildChanged.listen(_onJobUpdated);
   }
 
   @override
   void dispose() {
-    _onNoteAddedSubscription.cancel();
-    _onNoteChangedSubscription.cancel();
+    _onJobAddedSubscription.cancel();
+    _onJobChangedSubscription.cancel();
     super.dispose();
   }
 
@@ -83,7 +83,7 @@ class _JobHomePageState extends State<JobHomePage> {
                       ),
                     ),
                   ),
-                  onTap: () => _navigateToNote(context, items[position]),
+                  onTap: () => _navigateToJob(context, items[position]),
                 ),
               ],
             );
@@ -99,18 +99,18 @@ class _JobHomePageState extends State<JobHomePage> {
     });
   }
 
-  void _onNoteUpdated(Event event) {
-    var oldNoteValue =
-        items.singleWhere((note) => note.id == event.snapshot.key);
+  void _onJobUpdated(Event event) {
+    var oldJobValue =
+        items.singleWhere((job) => job.id == event.snapshot.key);
     setState(() {
-      items[items.indexOf(oldNoteValue)] =
+      items[items.indexOf(oldJobValue)] =
           JobOrder.fromSnapshot(event.snapshot);
     });
   }
-  void _navigateToNote(BuildContext context, JobOrder note) async {
+  void _navigateToJob(BuildContext context, JobOrder job) async {
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => JobDetPage(note)),
+      MaterialPageRoute(builder: (context) => JobDetPage(job)),
     );
   }
 }

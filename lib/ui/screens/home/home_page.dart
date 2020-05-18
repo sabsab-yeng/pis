@@ -31,9 +31,9 @@ class _HomePageState extends State<HomePage> {
     //Fetch Data for firebase 
       items = List();
 
-    _onNoteAddedSubscription = notesReference.onChildAdded.listen(_onJobAdded);
+    _onNoteAddedSubscription = jobsReference.onChildAdded.listen(_onJobAdded);
     _onNoteChangedSubscription =
-        notesReference.onChildChanged.listen(_onNoteUpdated);
+        jobsReference.onChildChanged.listen(_onNoteUpdated);
    
     var android = AndroidInitializationSettings('mipmap/ic_launcher');
     var ios = IOSInitializationSettings();
