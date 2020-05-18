@@ -159,8 +159,9 @@ class _AddJobPageState extends State<AddJobPage> {
     );
     if (d != null)
       setState(() {
-        _selectedDateInstall = DateFormat.yMd("en_US").format(d);
+        _selectedDateInstall = DateFormat('dd-MM-yyyy').format(d);
       });
+    _dateInstallController.text = _selectedDateInstall.toString();
   }
   @override
   Widget build(BuildContext context) {
@@ -207,7 +208,7 @@ class _AddJobPageState extends State<AddJobPage> {
               TextField(
                 controller: _dateNowController,
                 decoration: InputDecoration(
-                  labelText:  _dateNowController.text = formattedDate.toString(),
+                  labelText:  "Today",
                   suffixIcon: IconButton(
                     icon: Icon(Icons.calendar_today),
                     tooltip: 'Tap to open date now',
