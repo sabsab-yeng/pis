@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:pis/enum/enum.dart';
 import 'package:pis/models/job.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
+import 'package:pis/ui/screens/job/job_employee_widget.dart';
 import 'package:pis/ui/widgets/bottom_button_widget.dart';
 import 'package:pis/ui/widgets/google_map_widget.dart';
 import '../../ui_constant.dart';
@@ -130,7 +131,7 @@ class _JobDetPageState extends State<JobDetPage> {
         return SingleChildScrollView(
           child: Container(
             height: 600,
-            child: EmployeePage(),
+            child: EmployeeWidget(),
           ),
         );
       },
