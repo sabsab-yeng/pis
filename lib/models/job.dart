@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:pis/enum/enum.dart';
 
 class JobOrder {
   String _id;
@@ -40,5 +41,25 @@ class JobOrder {
   //   this._dateNow = obj['dateNow'];
   //   this._dateInstall = obj['dateInstall'];
   //   this._status = obj['status'];
+  // }
+
+
+  // JobStatus getJobStatus() {
+  //   switch (status) {
+  //     case 0:
+  //       return JobStatus.New;
+  //     case 1:
+  //       return JobStatus.SiteSurvey;
+  //     case 2:
+  //       return JobStatus.MaterialRequest;
+  //     case 3:
+  //       return JobStatus.InstallationExecution;
+  //     case 4:
+  //       return JobStatus.Testing;
+  //     case 5:
+  //       return JobStatus.TechReport;
+  //     case 6:
+  //       return JobStatus.CustomerConfirm;
+  //   }
   // }
 }
