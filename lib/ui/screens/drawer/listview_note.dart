@@ -44,7 +44,7 @@ class _ListViewNoteState extends State<ListViewNote> {
         elevation: 0,
         iconTheme: IconThemeData(color: appbarIconColor),
         title: Text(
-          'Management',
+          'Notes',
           style: appbarTextStyle,
         ),
         backgroundColor: appBarColor,
@@ -57,55 +57,117 @@ class _ListViewNoteState extends State<ListViewNote> {
         ),
       ),
       body: Center(
-        child: ListView.builder(
-          itemCount: items.length,
-          padding: const EdgeInsets.all(15.0),
-          itemBuilder: (context, position) {
-            return Column(
-              children: <Widget>[
-                Divider(height: 5.0),
-                ListTile(
-                  title: Text(
-                    '${items[position].title}',
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.deepOrangeAccent,
-                    ),
-                  ),
-                  subtitle: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${items[position].description}',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontStyle: FontStyle.italic,
+        child: FutureBuilder(
+          future: FirebaseDatabase.instance.reference().child("notes").orderByKey().once(),
+          builder:
+              (BuildContext context, AsyncSnapshot<DataSnapshot> snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: items.length,
+                padding: const EdgeInsets.all(15.0),
+                itemBuilder: (context, position) {
+                  return Column(
+                    children: <Widget>[
+                      Divider(height: 5.0),
+                      ListTile(
+                        title: Text(
+                          '${items[position].title}',
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            color: Colors.deepOrangeAccent,
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        icon: const Icon(FontAwesomeIcons.trash),
-                        onPressed: () =>
-                            _deleteNote(context, items[position], position),
+                        subtitle: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '${items[position].description}',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(FontAwesomeIcons.trash),
+                              onPressed: () => _deleteNote(
+                                  context, items[position], position),
+                            ),
+                          ],
+                        ),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.blueAccent,
+                          radius: 15.0,
+                          child: Text(
+                            '${position + 1}',
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        onTap: () => _navigateToNote(context, items[position]),
                       ),
                     ],
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.blueAccent,
-                    radius: 15.0,
-                    child: Text(
-                      '${position + 1}',
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  onTap: () => _navigateToNote(context, items[position]),
-                ),
-              ],
-            );
+                  );
+                },
+              );
+            }else if(snapshot.hasError){
+              return Text(snapshot.error);
+            }
+
+            return CircularProgressIndicator();
           },
         ),
+
+        // child: ListView.builder(
+        //   itemCount: items.length,
+        //   padding: const EdgeInsets.all(15.0),
+        //   itemBuilder: (context, position) {
+        //     return Column(
+        //       children: <Widget>[
+        //         Divider(height: 5.0),
+        //         ListTile(
+        //           title: Text(
+        //             '${items[position].title}',
+        //             style: TextStyle(
+        //               fontSize: 22.0,
+        //               color: Colors.deepOrangeAccent,
+        //             ),
+        //           ),
+        //           subtitle: Row(
+        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //             children: [
+        //               Text(
+        //                 '${items[position].description}',
+        //                 style: TextStyle(
+        //                   fontSize: 18.0,
+        //                   fontStyle: FontStyle.italic,
+        //                 ),
+        //               ),
+        //               IconButton(
+        //                 icon: const Icon(FontAwesomeIcons.trash),
+        //                 onPressed: () =>
+        //                     _deleteNote(context, items[position], position),
+        //               ),
+        //             ],
+        //           ),
+        //           leading: CircleAvatar(
+        //             backgroundColor: Colors.blueAccent,
+        //             radius: 15.0,
+        //             child: Text(
+        //               '${position + 1}',
+        //               style: TextStyle(
+        //                 fontSize: 22.0,
+        //                 color: Colors.white,
+        //               ),
+        //             ),
+        //           ),
+        //           onTap: () => _navigateToNote(context, items[position]),
+        //         ),
+        //       ],
+        //     );
+        //   },
+        // ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

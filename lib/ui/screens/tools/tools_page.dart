@@ -57,46 +57,60 @@ class _ToolsPageState extends State<ToolsPage> {
         ),
       ),
       body: Center(
-        child: ListView.builder(
-          itemCount: items.length,
-          padding: const EdgeInsets.all(15.0),
-          itemBuilder: (context, position) {
-            return Column(
-              children: <Widget>[
-                Divider(height: 5.0),
-                ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${items[position].title}',
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          color: Colors.deepOrangeAccent,
+        child: FutureBuilder(
+          future: FirebaseDatabase.instance.reference().child("tools").orderByKey().once(),
+          builder:
+              (BuildContext context, AsyncSnapshot<DataSnapshot> snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: items.length,
+                padding: const EdgeInsets.all(15.0),
+                itemBuilder: (context, position) {
+                  return Column(
+                    children: <Widget>[
+                      Divider(height: 5.0),
+                      ListTile(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '${items[position].title}',
+                              style: TextStyle(
+                                fontSize: 22.0,
+                                color: Colors.deepOrangeAccent,
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(FontAwesomeIcons.trash),
+                              onPressed: () => _deleteTool(
+                                  context, items[position], position),
+                            ),
+                          ],
                         ),
-                      ),
-                      IconButton(
-                        icon: const Icon(FontAwesomeIcons.trash),
-                        onPressed: () =>
-                            _deleteTool(context, items[position], position),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.blueAccent,
+                          radius: 15.0,
+                          child: Text(
+                            '${position + 1}',
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        onTap: () => _navigateToTool(context, items[position]),
                       ),
                     ],
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.blueAccent,
-                    radius: 15.0,
-                    child: Text(
-                      '${position + 1}',
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  onTap: () => _navigateToTool(context, items[position]),
-                ),
-              ],
-            );
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text(
+                snapshot.error,
+                style: TextStyle(color: Colors.red),
+              );
+            }
+            return CircularProgressIndicator(backgroundColor: Colors.red,);
           },
         ),
       ),

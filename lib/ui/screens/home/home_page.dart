@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
@@ -28,13 +27,13 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    //Fetch Data for firebase 
-      items = List();
+    //Fetch Data for firebase
+    items = List();
 
     _onNoteAddedSubscription = jobsReference.onChildAdded.listen(_onJobAdded);
     _onNoteChangedSubscription =
         jobsReference.onChildChanged.listen(_onNoteUpdated);
-   
+
     var android = AndroidInitializationSettings('mipmap/ic_launcher');
     var ios = IOSInitializationSettings();
 
@@ -84,7 +83,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-
   update(String token) {
     print(token);
     setState(() {});
@@ -111,54 +109,73 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ListView.builder(
-          itemCount: items.length,
-          padding: const EdgeInsets.all(15.0),
-          itemBuilder: (context, position) {
-            return Column(
-              children: <Widget>[
-                Divider(height: 5.0),
-                ListTile(
-                  title: Text(
-                    '${items[position].custid}',
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  subtitle: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${items[position].dateInstall}',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontStyle: FontStyle.italic,
+        child: FutureBuilder(
+          future: FirebaseDatabase.instance
+              .reference()
+              .child("jobOrder")
+              .orderByKey()
+              .once(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: items.length,
+                padding: const EdgeInsets.all(15.0),
+                itemBuilder: (context, position) {
+                  return Column(
+                    children: <Widget>[
+                      Divider(height: 5.0),
+                      ListTile(
+                        title: Text(
+                          '${items[position].custid}',
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            color: Colors.blue,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '${items[position].status}',
-                        style: TextStyle(
-                            fontSize: 18.0,
-                            fontStyle: FontStyle.italic,
-                            color: Colors.red),
+                        subtitle: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '${items[position].dateInstall}',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            Text(
+                              '${items[position].status}',
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontStyle: FontStyle.italic,
+                                  color: Colors.red),
+                            ),
+                          ],
+                        ),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.blueAccent,
+                          radius: 15.0,
+                          child: Text(
+                            '${position + 1}',
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        onTap: () => _navigateToNote(context, items[position]),
                       ),
                     ],
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.blueAccent,
-                    radius: 15.0,
-                    child: Text(
-                      '${position + 1}',
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  onTap: () => _navigateToNote(context, items[position]),
-                ),
-              ],
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text(
+                snapshot.error,
+                style: TextStyle(color: Colors.red),
+              );
+            }
+            return CircularProgressIndicator(
+              backgroundColor: Colors.red,
             );
           },
         ),
@@ -180,6 +197,7 @@ class _HomePageState extends State<HomePage> {
           JobOrder.fromSnapshot(event.snapshot);
     });
   }
+
   void _navigateToNote(BuildContext context, JobOrder note) async {
     await Navigator.push(
       context,
