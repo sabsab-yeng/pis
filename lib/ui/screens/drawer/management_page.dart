@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/customer/page_customer.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
 import 'package:pis/ui/screens/job/job_page.dart';
+import 'package:pis/ui/screens/tools/tool_choose.dart';
+import 'package:pis/ui/screens/tools/tools_page.dart';
 import 'package:pis/ui/screens/user/user_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
@@ -67,6 +69,22 @@ class _ManagementPageState extends State<ManagementPage> {
                       MaterialPageRoute(builder: (context) => UserDashboard()));
                 },
                 title: "Add user",
+              ),
+               Divider(),
+              InkWellWidget(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ToolsPage()));
+                },
+                title: "Tools",
+              ),
+               Divider(),
+              InkWellWidget(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ToolChoosePage()));
+                },
+                title: "Choose",
               ),
                Divider(),
               InkWellWidget(
