@@ -4,7 +4,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:pis/models/tool.dart';
 import 'package:pis/ui/widgets/full_width_raisedbutton_widget.dart';
-import 'package:pis/ui/widgets/raised_button_widget.dart';
 
 import '../../ui_constant.dart';
 
@@ -47,41 +46,59 @@ class _ToolChoosePageState extends State<ToolChoosePage> {
       ),
       body: Stack(
         children: [
-          ListView(
-            children: List.generate(
-              items.length,
-              (index) {
-                return ListTile(
-                  onTap: () {
-                    setState(() {
-                      items[index].selected = !items[index].selected;
+          FutureBuilder(
+              future: FirebaseDatabase.instance
+                  .reference()
+                  .child("tools")
+                  .orderByKey()
+                  .once(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return ListView(
+                    children: List.generate(
+                      items.length,
+                      (index) {
+                        return ListTile(
+                          onTap: () {
+                            setState(() {
+                              items[index].selected = !items[index].selected;
 
-                      print(items[index].selected.toString());
-                    });
-                  },
-                  selected: items[index].selected,
-                  leading: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () {},
-                    child: Container(
-                      width: 48,
-                      height: 48,
-                      padding: EdgeInsets.symmetric(vertical: 4.0),
-                      alignment: Alignment.center,
-                      child: CircleAvatar(
-                          // backgroundColor: items[index].colorpicture,
+                              print(items[index].selected.toString());
+                            });
+                          },
+                          selected: items[index].selected,
+                          leading: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () {},
+                            child: Container(
+                              width: 48,
+                              height: 48,
+                              padding: EdgeInsets.symmetric(vertical: 4.0),
+                              alignment: Alignment.center,
+                              child: CircleAvatar(
+                                  // backgroundColor: items[index].colorpicture,
+                                  ),
+                            ),
                           ),
+                          title: Text('' + items[index].title.toString()),
+                          // subtitle: Text(items[index].id.toString()),
+                          trailing: (items[index].selected)
+                              ? Icon(Icons.check_box)
+                              : Icon(Icons.check_box_outline_blank),
+                        );
+                      },
                     ),
-                  ),
-                  title: Text('' + items[index].title.toString()),
-                  // subtitle: Text(items[index].id.toString()),
-                  trailing: (items[index].selected)
-                      ? Icon(Icons.check_box)
-                      : Icon(Icons.check_box_outline_blank),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text(
+                    snapshot.error,
+                    style: TextStyle(color: Colors.red),
+                  );
+                }
+                return CircularProgressIndicator(
+                  backgroundColor: Colors.red,
                 );
-              },
-            ),
-          ),
+              }),
           Positioned(
               bottom: 0,
               child: FullWidthRaisedButtonWidget(
