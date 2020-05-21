@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:pis/enum/enum.dart';
 import 'package:pis/models/employee.dart';
 
 class EmployeeWidget extends StatefulWidget {
@@ -10,11 +11,20 @@ class EmployeeWidget extends StatefulWidget {
 }
 
 class _EmployeeWidgetState extends State<EmployeeWidget> {
+  
   final notesReference =
       FirebaseDatabase.instance.reference().child('employee');
   List<Employee> items = List();
   StreamSubscription<Event> _onNoteAddedSubscription;
   // StreamSubscription<Event> _onNoteChangedSubscription;
+
+  //When we select employee
+  List<bool> _selections = [];
+  List<bool> get selections => _selections;
+  EmployeeChoise choise;
+
+  List<Employee> _employee = [];
+  List<Employee> get employee => _employee;
 
   @override
   void initState() {
@@ -123,6 +133,19 @@ class _EmployeeWidgetState extends State<EmployeeWidget> {
         ),
       ),
     );
+  }
+
+  setSelectedJobCategory(List<String> selectedIDs) {
+    _selections = _employee.map((t) => selectedIDs.contains(t.id)).toList();
+  }
+
+  selectJobCategory(int index) {
+    // if it's a single selection type, we wont allow more
+    if (choise == EmployeeChoise.Single &&
+        (_selections.where((s) => s == true).toList().length > 0)) {
+      return;
+    }
+    _selections[index] = !_selections[index];
   }
 
   //Get first letter from the name of employee
