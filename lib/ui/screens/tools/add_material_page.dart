@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:pis/models/tool.dart';
+import 'package:pis/models/material.dart';
 
 import '../../ui_constant.dart';
  
-class AddToolPage extends StatefulWidget {
-  final Tool note;
-  AddToolPage(this.note);
+class AddMaterialPage extends StatefulWidget {
+  final Tool material;
+  AddMaterialPage(this.material);
  
   @override
-  State<StatefulWidget> createState() => _AddToolPageState();
+  State<StatefulWidget> createState() => _AddMaterialPageState();
 }
  
 final notesReference = FirebaseDatabase.instance.reference().child('tools');
  
-class _AddToolPageState extends State<AddToolPage> {
+class _AddMaterialPageState extends State<AddMaterialPage> {
   TextEditingController _titleController;
  
   @override
   void initState() {
     super.initState();
  
-    _titleController = TextEditingController(text: widget.note.title);
+    _titleController = TextEditingController(text: widget.material.title);
   }
  
   @override
@@ -31,7 +31,7 @@ class _AddToolPageState extends State<AddToolPage> {
         elevation: 0,
         iconTheme: IconThemeData(color: appbarIconColor),
         title: Text(
-          'Tool information',
+          'Material information',
           style: appbarTextStyle,
         ),
         backgroundColor: appBarColor,
@@ -54,10 +54,10 @@ class _AddToolPageState extends State<AddToolPage> {
             ),
             Padding(padding: EdgeInsets.all(5.0)),
             RaisedButton(
-              child: (widget.note.id != null) ? Text('Update') : Text('Add'),
+              child: (widget.material.id != null) ? Text('Update') : Text('Add'),
               onPressed: () {
-                if (widget.note.id != null) {
-                  notesReference.child(widget.note.id).set({
+                if (widget.material.id != null) {
+                  notesReference.child(widget.material.id).set({
                     'title': _titleController.text,
                   }).then((_) {
                     Navigator.pop(context);

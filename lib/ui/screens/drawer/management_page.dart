@@ -3,8 +3,8 @@ import 'package:pis/ui/screens/customer/page_customer.dart';
 import 'package:pis/ui/screens/drawer/check_multiple.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
 import 'package:pis/ui/screens/job/job_page.dart';
-import 'package:pis/ui/screens/tools/tool_choose.dart';
-import 'package:pis/ui/screens/tools/tools_page.dart';
+import 'package:pis/ui/screens/tools/material_choose_page.dart';
+import 'package:pis/ui/screens/tools/materials_page.dart';
 import 'package:pis/ui/screens/user/user_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
@@ -75,7 +75,7 @@ class _ManagementPageState extends State<ManagementPage> {
               InkWellWidget(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ToolsPage()));
+                      MaterialPageRoute(builder: (context) => MaterialPage()));
                 },
                 title: "Tools",
               ),
@@ -83,7 +83,7 @@ class _ManagementPageState extends State<ManagementPage> {
               InkWellWidget(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ToolChoosePage()));
+                      MaterialPageRoute(builder: (context) => MaterialChoosePage()));
                 },
                 title: "Choose",
               ),

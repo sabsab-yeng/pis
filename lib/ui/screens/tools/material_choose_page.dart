@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:pis/models/tool.dart';
+import 'package:pis/models/material.dart';
 import 'package:pis/ui/widgets/full_width_raisedbutton_widget.dart';
 
 import '../../ui_constant.dart';
@@ -13,22 +13,22 @@ class MaterialChoosePage extends StatefulWidget {
 }
 
 class _MaterialChoosePageState extends State<MaterialChoosePage> {
-  final toolsReference = FirebaseDatabase.instance.reference().child('tools');
+  final materialReference = FirebaseDatabase.instance.reference().child('tools');
   List<Tool> items;
-  StreamSubscription<Event> _onToolAddedSubscription;
+  StreamSubscription<Event> _onMaterialAddedSubscription;
 
   @override
   void initState() {
     super.initState();
     items = List();
 
-    _onToolAddedSubscription = toolsReference.onChildAdded.listen(_onToolAdded);
+    _onMaterialAddedSubscription = materialReference.onChildAdded.listen(_onMaterialAdded);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _onToolAddedSubscription.cancel();
+    _onMaterialAddedSubscription.cancel();
   }
 
   @override
@@ -38,7 +38,7 @@ class _MaterialChoosePageState extends State<MaterialChoosePage> {
         elevation: 0,
         iconTheme: IconThemeData(color: appbarIconColor),
         title: Text(
-          'Select your tool',
+          'Select your Material',
           style: appbarTextStyle,
         ),
         backgroundColor: appBarColor,
@@ -118,7 +118,7 @@ class _MaterialChoosePageState extends State<MaterialChoosePage> {
     );
   }
 
-  void _onToolAdded(Event event) {
+  void _onMaterialAdded(Event event) {
     setState(() {
       items.add(Tool.fromSnapshot(event.snapshot));
     });
