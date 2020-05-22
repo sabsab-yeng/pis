@@ -26,6 +26,12 @@ class _ToolChoosePageState extends State<ToolChoosePage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _onToolAddedSubscription.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -102,7 +108,9 @@ class _ToolChoosePageState extends State<ToolChoosePage> {
           Positioned(
               bottom: 0,
               child: FullWidthRaisedButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 title: "Comfirms",
               ))
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/customer/page_customer.dart';
+import 'package:pis/ui/screens/drawer/check_multiple.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
 import 'package:pis/ui/screens/job/job_page.dart';
 import 'package:pis/ui/screens/tools/tool_choose.dart';
@@ -93,6 +94,14 @@ class _ManagementPageState extends State<ManagementPage> {
                       MaterialPageRoute(builder: (context) => ListViewNote()));
                 },
                 title: "Notes",
+              ),
+              Divider(),
+               InkWellWidget(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MultipleChoosePage()));
+                },
+                title: "Multiple page",
               ),
             ],
           ),

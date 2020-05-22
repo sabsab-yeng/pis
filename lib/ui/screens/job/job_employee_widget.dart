@@ -18,6 +18,23 @@ class _EmployeeWidgetState extends State<EmployeeWidget> {
   StreamSubscription<Event> _onNoteAddedSubscription;
   // StreamSubscription<Event> _onNoteChangedSubscription;
 
+  var isSelected = false;
+  var mycolor=Colors.white;
+
+  //  toggleSelection() {
+  //   setState(() {
+  //     if (isSelected) {
+  //       border= BoxDecoration(border: Border.all(color: Colors.white));
+  //       mycolor = Colors.white;
+  //       isSelected = false;
+  //     } else {
+  //       border= BoxDecoration(border: Border.all(color: Colors.grey));
+  //       mycolor = Colors.grey[300];
+  //       isSelected = true;
+  //     }
+  //   });
+  // }
+
   //When we select employee
   List<bool> _selections = [];
   List<bool> get selections => _selections;
