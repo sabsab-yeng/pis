@@ -3,7 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:pis/ui/screens/tools/tool_choose.dart';
+import 'package:pis/ui/screens/tools/material_choose_page.dart';
 import 'package:pis/ui/widgets/google_map_widget.dart';
 import 'package:pis/ui/widgets/raised_button_widget.dart';
 
@@ -143,7 +143,7 @@ class _CheckLocationPageState extends State<CheckLocationPage> {
   Widget build(BuildContext context) {
    return  Stack(fit: StackFit.expand, children: <Widget>[
         FullMapWidget(onSelectedLocation: (lat, long) {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> ToolChoosePage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> MaterialChoosePage()));
           // Create the member now and set the category
           // onboardingBloc.setUserLocation(lat, long);
           // Push to next screen

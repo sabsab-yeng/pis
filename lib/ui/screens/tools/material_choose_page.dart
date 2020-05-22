@@ -7,12 +7,12 @@ import 'package:pis/ui/widgets/full_width_raisedbutton_widget.dart';
 
 import '../../ui_constant.dart';
 
-class ToolChoosePage extends StatefulWidget {
+class MaterialChoosePage extends StatefulWidget {
   @override
-  _ToolChoosePageState createState() => _ToolChoosePageState();
+  _MaterialChoosePageState createState() => _MaterialChoosePageState();
 }
 
-class _ToolChoosePageState extends State<ToolChoosePage> {
+class _MaterialChoosePageState extends State<MaterialChoosePage> {
   final toolsReference = FirebaseDatabase.instance.reference().child('tools');
   List<Tool> items;
   StreamSubscription<Event> _onToolAddedSubscription;

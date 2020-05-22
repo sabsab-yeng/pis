@@ -3,18 +3,18 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pis/models/tool.dart';
-import 'package:pis/ui/screens/tools/add_tool_page.dart';
+import 'package:pis/ui/screens/tools/add_material_page.dart';
 
 import '../../ui_constant.dart';
 
-class ToolsPage extends StatefulWidget {
+class MaterialPage extends StatefulWidget {
   @override
-  _ToolsPageState createState() => _ToolsPageState();
+  _MaterialPageState createState() => _MaterialPageState();
 }
 
 final toolsReference = FirebaseDatabase.instance.reference().child('tools');
 
-class _ToolsPageState extends State<ToolsPage> {
+class _MaterialPageState extends State<MaterialPage> {
   List<Tool> items;
   StreamSubscription<Event> _onToolAddedSubscription;
   StreamSubscription<Event> _onToolChangedSubscription;
@@ -25,9 +25,9 @@ class _ToolsPageState extends State<ToolsPage> {
 
     items = List();
 
-    _onToolAddedSubscription = toolsReference.onChildAdded.listen(_onToolAdded);
+    _onToolAddedSubscription = toolsReference.onChildAdded.listen(_onMaterialAdded);
     _onToolChangedSubscription =
-        toolsReference.onChildChanged.listen(_onToolUpdated);
+        toolsReference.onChildChanged.listen(_onMaterialUpdated);
   }
 
   @override
@@ -44,7 +44,7 @@ class _ToolsPageState extends State<ToolsPage> {
         elevation: 0,
         iconTheme: IconThemeData(color: appbarIconColor),
         title: Text(
-          'Tools',
+          'Materials',
           style: appbarTextStyle,
         ),
         backgroundColor: appBarColor,
@@ -82,7 +82,7 @@ class _ToolsPageState extends State<ToolsPage> {
                             ),
                             IconButton(
                               icon: const Icon(FontAwesomeIcons.trash),
-                              onPressed: () => _deleteTool(
+                              onPressed: () => _deleteMaterial(
                                   context, items[position], position),
                             ),
                           ],
@@ -98,7 +98,7 @@ class _ToolsPageState extends State<ToolsPage> {
                             ),
                           ),
                         ),
-                        onTap: () => _navigateToTool(context, items[position]),
+                        onTap: () => _navigateToMaterial(context, items[position]),
                       ),
                     ],
                   );
@@ -116,18 +116,18 @@ class _ToolsPageState extends State<ToolsPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _createNewTool(context),
+        onPressed: () => _createNewMaterial(context),
       ),
     );
   }
 
-  void _onToolAdded(Event event) {
+  void _onMaterialAdded(Event event) {
     setState(() {
       items.add(Tool.fromSnapshot(event.snapshot));
     });
   }
 
-  void _onToolUpdated(Event event) {
+  void _onMaterialUpdated(Event event) {
     var oldToolValue =
         items.singleWhere((tool) => tool.id == event.snapshot.key);
     setState(() {
@@ -135,7 +135,7 @@ class _ToolsPageState extends State<ToolsPage> {
     });
   }
 
-  void _deleteTool(BuildContext context, Tool tool, int position) async {
+  void _deleteMaterial(BuildContext context, Tool tool, int position) async {
     await toolsReference.child(tool.id).remove().then((_) {
       setState(() {
         items.removeAt(position);
@@ -143,17 +143,17 @@ class _ToolsPageState extends State<ToolsPage> {
     });
   }
 
-  void _navigateToTool(BuildContext context, Tool tool) async {
+  void _navigateToMaterial(BuildContext context, Tool tool) async {
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => AddToolPage(tool)),
+      MaterialPageRoute(builder: (context) => AddMaterialPage(tool)),
     );
   }
 
-  void _createNewTool(BuildContext context) async {
+  void _createNewMaterial(BuildContext context) async {
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => AddToolPage(Tool(null, ''))),
+      MaterialPageRoute(builder: (context) => AddMaterialPage(Tool(null, ''))),
     );
   }
 }

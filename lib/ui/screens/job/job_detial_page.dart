@@ -4,7 +4,7 @@ import 'package:pis/bloc/job_delial_bloc.dart';
 import 'package:pis/enum/enum.dart';
 import 'package:pis/models/job.dart';
 import 'package:pis/ui/screens/job/job_employee_widget.dart';
-import 'package:pis/ui/screens/tools/tool_choose.dart';
+import 'package:pis/ui/screens/tools/material_choose_page.dart';
 import 'package:pis/ui/widgets/bottom_button_widget.dart';
 import 'package:pis/ui/widgets/google_map_widget.dart';
 import '../../ui_constant.dart';
@@ -63,7 +63,7 @@ class _JobDetPageState extends State<JobDetPage> {
       return BottomButtonWidget(
         backgroundColor: Colors.blue,
         title: "Material Request",
-        icon: Icon(Icons.straighten, color: Colors.white),
+        icon: Icon(Icons.location_on, color: Colors.white),
         onClicked: () {
           // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
           //   return LookingEmployeeWidget();
@@ -76,7 +76,7 @@ class _JobDetPageState extends State<JobDetPage> {
       return BottomButtonWidget(
         backgroundColor: Colors.blue,
         title: "Testing",
-        icon: Icon(Icons.straighten, color: Colors.white),
+        icon: Icon(Icons.text_fields, color: Colors.white),
         onClicked: () {
           // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
           //   return LookingEmployeeWidget();
@@ -88,7 +88,7 @@ class _JobDetPageState extends State<JobDetPage> {
       return BottomButtonWidget(
         backgroundColor: Colors.blue,
         title: "Tech Report",
-        icon: Icon(Icons.straighten, color: Colors.white),
+        icon: Icon(Icons.report, color: Colors.white),
         onClicked: () {
           // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
           //   return LookingEmployeeWidget();
@@ -101,7 +101,7 @@ class _JobDetPageState extends State<JobDetPage> {
       return BottomButtonWidget(
         backgroundColor: Colors.blue,
         title: "Customer Confirm",
-        icon: Icon(Icons.straighten, color: Colors.white),
+        icon: Icon(Icons.thumb_up, color: Colors.white),
         onClicked: () {
           // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
           //   return LookingEmployeeWidget();
@@ -123,7 +123,7 @@ class _JobDetPageState extends State<JobDetPage> {
               height: 600,
               child: FullMapWidget(onSelectedLocation: (lat, long) {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ToolChoosePage()));
+                    MaterialPageRoute(builder: (context) => MaterialChoosePage()));
               })),
         );
       },
