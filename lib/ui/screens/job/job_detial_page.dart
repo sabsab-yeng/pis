@@ -4,9 +4,8 @@ import 'package:pis/bloc/job_delial_bloc.dart';
 import 'package:pis/enum/enum.dart';
 import 'package:pis/models/job.dart';
 import 'package:pis/ui/screens/job/job_employee_widget.dart';
-import 'package:pis/ui/screens/tools/material_choose_page.dart';
+import 'package:pis/ui/screens/location/draw_google_map.dart';
 import 'package:pis/ui/widgets/bottom_button_widget.dart';
-import 'package:pis/ui/widgets/google_map_widget.dart';
 import '../../ui_constant.dart';
 
 class JobDetPage extends StatefulWidget {
@@ -49,7 +48,7 @@ class _JobDetPageState extends State<JobDetPage> {
       //Create the button
       return BottomButtonWidget(
         backgroundColor: Colors.blue,
-        title: "SiteSurvey",
+        title: "Assing employee",
         icon: Icon(Icons.straighten, color: Colors.white),
         onClicked: () {
           // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
@@ -57,6 +56,19 @@ class _JobDetPageState extends State<JobDetPage> {
           // });
 
           openEmployee(context);
+        },
+      );
+    } else if (jobStatus == JobStatus.SiteSurvey) {
+      return BottomButtonWidget(
+        backgroundColor: Colors.blue,
+        title: "Site survey",
+        icon: Icon(Icons.location_on, color: Colors.white),
+        onClicked: () {
+          // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
+          //   return LookingEmployeeWidget();
+          // });
+
+          openLocation(context);
         },
       );
     } else if (jobStatus == JobStatus.SiteSurvey) {
@@ -120,11 +132,9 @@ class _JobDetPageState extends State<JobDetPage> {
       builder: (BuildContext context) {
         return SingleChildScrollView(
           child: Container(
-              height: 600,
-              child: FullMapWidget(onSelectedLocation: (lat, long) {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MaterialChoosePage()));
-              })),
+            height: 600,
+            child: DrawerGoogleMap(),
+          ),
         );
       },
     );
@@ -188,8 +198,8 @@ class _JobDetPageState extends State<JobDetPage> {
               ],
             ),
           ),
-          
-          _buttonAction(JobStatus.New),
+
+          _buttonAction(JobStatus.SiteSurvey),
           // _buttonAction(JobStatus.SiteSurvey),
           // _buttonAction(JobStatus.Testing),
           // _buttonAction(JobStatus.MaterialRequest),

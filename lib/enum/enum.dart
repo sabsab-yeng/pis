@@ -1,12 +1,34 @@
-enum AuthType {Login, SignUp}
+enum AuthType { Login, SignUp }
 
-enum JobStatus{
-  New, Assing, SiteSurvey, InProgress, MaterialRequest, ReMaterialRequest, RMPending,  InstallationExecution, Testing, TechReport, Complete, CustomerConfirm, Decline, Revisit, ComfirmComplete
+enum JobStatus {
+  New,
+  SiteSurvey,
+  InProgress,
+  MaterialRequest,
+  ReMaterialRequest,
+  RMPending,
+  InstallationExecution,
+  Testing,
+  TechReport,
+  Complete,
+  CustomerConfirm,
+  Decline,
+  Revisit,
+  ComfirmComplete,
 }
 
-enum EmployeeJobStatus{Assing, InProgress, Pending, Complete, Decline}
+enum EmployeeJobStatus {
+  Assing,
+  InProgress,
+  Pending,
+  Complete,
+  Decline,
+}
 
-enum EmployeeChoise{ Single, Multiple}
+enum EmployeeChoise {
+  Single,
+  Multiple,
+}
 
 //Yes -->  || No -> Decline
 

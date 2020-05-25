@@ -21,7 +21,6 @@ class _MaterialChoosePageState extends State<MaterialChoosePage> {
   void initState() {
     super.initState();
     items = List();
-
     _onMaterialAddedSubscription = materialReference.onChildAdded.listen(_onMaterialAdded);
   }
 
@@ -68,7 +67,6 @@ class _MaterialChoosePageState extends State<MaterialChoosePage> {
                           onTap: () {
                             setState(() {
                               items[index].selected = !items[index].selected;
-
                               print(items[index].selected.toString());
                             });
                           },
