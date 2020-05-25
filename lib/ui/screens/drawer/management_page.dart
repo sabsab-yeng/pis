@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pis/ui/screens/customer/page_customer.dart';
-import 'package:pis/ui/screens/drawer/check_multiple.dart';
 import 'package:pis/ui/screens/employee/employee_page.dart';
 import 'package:pis/ui/screens/job/job_page.dart';
+import 'package:pis/ui/screens/location/draw_google_map.dart';
 import 'package:pis/ui/screens/tools/material_choose_page.dart';
 import 'package:pis/ui/screens/tools/materials_page.dart';
 import 'package:pis/ui/screens/user/user_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
 import 'listview_note.dart';
+import 'multiple_choise.dart';
 
 class ManagementPage extends StatefulWidget {
   @override
@@ -69,7 +70,7 @@ class _ManagementPageState extends State<ManagementPage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UserDashboard()));
                 },
-                title: "Add user",
+                title: "User",
               ),
                Divider(),
               InkWellWidget(
@@ -77,7 +78,7 @@ class _ManagementPageState extends State<ManagementPage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => MaterialPage()));
                 },
-                title: "Tools",
+                title: "Materials",
               ),
                Divider(),
               InkWellWidget(
@@ -99,9 +100,17 @@ class _ManagementPageState extends State<ManagementPage> {
                InkWellWidget(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MultipleChoosePage()));
+                      MaterialPageRoute(builder: (context) => MultipleChoisePage()));
                 },
                 title: "Multiple page",
+              ),
+              Divider(),
+               InkWellWidget(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DrawerGoogleMap()));
+                },
+                title: "Draw google map",
               ),
             ],
           ),

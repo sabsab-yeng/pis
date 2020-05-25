@@ -16,24 +16,9 @@ class _EmployeeWidgetState extends State<EmployeeWidget> {
       FirebaseDatabase.instance.reference().child('employee');
   List<Employee> items = List();
   StreamSubscription<Event> _onNoteAddedSubscription;
-  // StreamSubscription<Event> _onNoteChangedSubscription;
 
   var isSelected = false;
   var mycolor=Colors.white;
-
-  //  toggleSelection() {
-  //   setState(() {
-  //     if (isSelected) {
-  //       border= BoxDecoration(border: Border.all(color: Colors.white));
-  //       mycolor = Colors.white;
-  //       isSelected = false;
-  //     } else {
-  //       border= BoxDecoration(border: Border.all(color: Colors.grey));
-  //       mycolor = Colors.grey[300];
-  //       isSelected = true;
-  //     }
-  //   });
-  // }
 
   //When we select employee
   List<bool> _selections = [];
@@ -47,8 +32,6 @@ class _EmployeeWidgetState extends State<EmployeeWidget> {
   void initState() {
     super.initState();
     _onNoteAddedSubscription = notesReference.onChildAdded.listen(_onNoteAdded);
-    // _onNoteChangedSubscription =
-    //     notesReference.onChildChanged.listen(_onNoteUpdated);
   }
 
   @override
@@ -109,29 +92,6 @@ class _EmployeeWidgetState extends State<EmployeeWidget> {
                             fontStyle: FontStyle.italic,
                           ),
                         ),
-                        // Card(
-                        //   child: ListTile(
-                        //     title: Text(
-                        //       '${items[position].firstname}',
-                        //       style: TextStyle(
-                        //         fontSize: 22.0,
-                        //         color: Colors.deepOrangeAccent,
-                        //       ),
-                        //     ),
-                        //     subtitle: Text(
-                        //       '${items[position].lastname}',
-                        //       style: TextStyle(
-                        //         fontSize: 18.0,
-                        //         fontStyle: FontStyle.italic,
-                        //       ),
-                        //     ),
-                        //     leading: CircleAvatar(
-                        //       backgroundColor: Colors.blueAccent,
-                        //       radius: 40.0,
-                        //     ),
-                        //     // onTap: () => _navigateToNote(context, items[position]),
-                        //   ),
-                        // ),
                       ],
                     ),
                   );
@@ -150,30 +110,6 @@ class _EmployeeWidgetState extends State<EmployeeWidget> {
         ),
       ),
     );
-  }
-
-  setSelectedJobCategory(List<String> selectedIDs) {
-    _selections = _employee.map((t) => selectedIDs.contains(t.id)).toList();
-  }
-
-  selectJobCategory(int index) {
-    // if it's a single selection type, we wont allow more
-    if (choise == EmployeeChoise.Single &&
-        (_selections.where((s) => s == true).toList().length > 0)) {
-      return;
-    }
-    _selections[index] = !_selections[index];
-  }
-
-  //Get first letter from the name of employee
-  String getShortName(Employee employee) {
-    String shortName = "";
-    if (employee.firstname.isNotEmpty && employee.lastname.isNotEmpty) {
-      shortName = employee.firstname.substring(0, 1) +
-          "." +
-          employee.lastname.substring(0, 1);
-    }
-    return shortName;
   }
 
   void _onNoteAdded(Event event) {
