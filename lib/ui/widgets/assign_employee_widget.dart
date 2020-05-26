@@ -35,9 +35,6 @@ class _AssignEmployeeWidgetState extends State<AssignEmployeeWidget> {
         },
         child: Stack(
           children: <Widget>[
-            // Text(
-            //   widget.item.firstname,
-            // ),
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
