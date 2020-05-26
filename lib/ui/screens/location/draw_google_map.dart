@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pis/ui/widgets/camera_picture_widget.dart';
 import 'package:pis/ui/widgets/material_widget.dart';
-import 'package:pis/ui/widgets/raised_button_widget.dart';
 import 'package:polymaker/core/models/location_polygon.dart';
 import 'package:polymaker/polymaker.dart' as polymaker;
 

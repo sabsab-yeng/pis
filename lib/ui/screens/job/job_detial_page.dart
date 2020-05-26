@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:pis/bloc/job_delial_bloc.dart';
 import 'package:pis/enum/enum.dart';
 import 'package:pis/models/job.dart';
-import 'package:pis/ui/screens/job/job_employee_widget.dart';
+import 'package:pis/ui/screens/job/assign_employee_page.dart';
 import 'package:pis/ui/screens/location/draw_google_map.dart';
 import 'package:pis/ui/widgets/bottom_button_widget.dart';
 import '../../ui_constant.dart';
@@ -147,7 +147,7 @@ class _JobDetPageState extends State<JobDetPage> {
         return SingleChildScrollView(
           child: Container(
             height: 600,
-            child: EmployeeWidget(),
+            child: AssignEmployeePage(),
           ),
         );
       },
@@ -199,7 +199,7 @@ class _JobDetPageState extends State<JobDetPage> {
             ),
           ),
 
-          _buttonAction(JobStatus.SiteSurvey),
+          _buttonAction(JobStatus.New),
           // _buttonAction(JobStatus.SiteSurvey),
           // _buttonAction(JobStatus.Testing),
           // _buttonAction(JobStatus.MaterialRequest),
