@@ -6,6 +6,9 @@ import 'package:pis/models/job.dart';
 import 'package:pis/ui/screens/job/assign_employee_page.dart';
 import 'package:pis/ui/screens/location/draw_google_map.dart';
 import 'package:pis/ui/widgets/bottom_button_widget.dart';
+import 'package:pis/ui/widgets/no_widget.dart';
+import 'package:pis/ui/widgets/raised_button_widget.dart';
+import 'package:pis/ui/widgets/yes_widget.dart';
 import '../../ui_constant.dart';
 
 class JobDetPage extends StatefulWidget {
@@ -39,7 +42,6 @@ class _JobDetPageState extends State<JobDetPage> {
     _dateNowController = Text(widget.job.dateNow);
     _dateInstallController = Text(widget.job.dateInstall);
     _statusController = TextEditingController(text: widget.job.status);
-    // jobDetialBloc.getJobStatus();
   }
 
   //Check status
@@ -71,30 +73,45 @@ class _JobDetPageState extends State<JobDetPage> {
           openLocation(context);
         },
       );
-    } else if (jobStatus == JobStatus.SiteSurvey) {
-      return BottomButtonWidget(
-        backgroundColor: Colors.blue,
-        title: "Material Request",
-        icon: Icon(Icons.location_on, color: Colors.white),
-        onClicked: () {
-          // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
-          //   return LookingEmployeeWidget();
-          // });
+      } else if (jobStatus == JobStatus.SiteSurvey) {
+        return BottomButtonWidget(
+          backgroundColor: Colors.blue,
+          title: "Material Request",
+          icon: Icon(Icons.location_on, color: Colors.white),
+          onClicked: () {
+            // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
+            //   return LookingEmployeeWidget();
+            // });
 
-          openLocation(context);
-        },
-      );
+            openLocation(context);
+          },
+        );
     } else if (jobStatus == JobStatus.InstallationExecution) {
-      return BottomButtonWidget(
-        backgroundColor: Colors.blue,
-        title: "Testing",
-        icon: Icon(Icons.text_fields, color: Colors.white),
-        onClicked: () {
-          // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
-          //   return LookingEmployeeWidget();
-          // });
-          _changedStatus();
-        },
+      return Positioned(
+        bottom: 0,
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              RaisedButton(
+                child: Text("No"),
+                onPressed: () {
+                  openNoButton(context);
+                },
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.51,
+              ),
+              RaisedButton(
+                child: Text("Yes"),
+                onPressed: () {
+                  openYesButton(context);
+                },
+              ),
+            ],
+          ),
+        ),
       );
     } else if (jobStatus == JobStatus.Testing) {
       return BottomButtonWidget(
@@ -126,6 +143,7 @@ class _JobDetPageState extends State<JobDetPage> {
     return Container();
   }
 
+  //Need to display Sitesurvey
   openLocation(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -140,6 +158,7 @@ class _JobDetPageState extends State<JobDetPage> {
     );
   }
 
+  //Assign employee
   openEmployee(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -149,6 +168,29 @@ class _JobDetPageState extends State<JobDetPage> {
             height: 600,
             child: AssignEmployeePage(),
           ),
+        );
+      },
+    );
+  }
+
+  //Create no and yes button after Installation
+  openNoButton(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return NoWidget();
+      },
+    );
+  }
+
+  //Create Yes button
+  openYesButton(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 300,
+          child: YesWidget(),
         );
       },
     );
@@ -199,8 +241,8 @@ class _JobDetPageState extends State<JobDetPage> {
             ),
           ),
 
-          _buttonAction(JobStatus.New),
-          // _buttonAction(JobStatus.SiteSurvey),
+          // _buttonAction(JobStatus.New),
+          _buttonAction(JobStatus.SiteSurvey),
           // _buttonAction(JobStatus.Testing),
           // _buttonAction(JobStatus.MaterialRequest),
           // _buttonAction(JobStatus.InstallationExecution),

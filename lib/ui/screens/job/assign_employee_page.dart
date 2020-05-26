@@ -51,7 +51,7 @@ class _AssignEmployeePageState extends State<AssignEmployeePage> {
                 padding: const EdgeInsets.all(15.0),
                 itemBuilder: (context, position) {
                   return AssignEmployeeWidget(
-                      item: items[position],
+                      employee: items[position],
                       isSelected: (bool value) {
                         setState(() {
                           if (value) {
