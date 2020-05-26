@@ -143,15 +143,15 @@ class _CustomerPageState extends State<CustomerPage>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.edit,
-                        color: const Color(0xFF167F67),
+                        color: Color(0xFF167F67),
                       ),
                       onPressed: () => showEditWidget(customer, true),
                     ),
                     IconButton(
-                      icon: const Icon(FontAwesomeIcons.trash,
-                          color: const Color(0xFF167F67)),
+                      icon: Icon(FontAwesomeIcons.trash,
+                          color: Color(0xFF167F67)),
                       onPressed: () => showAlertDialog(context, customer),
                     ),
                   ],
@@ -159,7 +159,7 @@ class _CustomerPageState extends State<CustomerPage>
               ],
             ),
           ),
-          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
+          padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0)),
     );
 
     return item;
