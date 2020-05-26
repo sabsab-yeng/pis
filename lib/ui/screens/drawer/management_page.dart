@@ -9,7 +9,6 @@ import 'package:pis/ui/screens/user/user_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
 import 'listview_note.dart';
-import 'multiple_choise.dart';
 
 class ManagementPage extends StatefulWidget {
   @override
@@ -99,10 +98,10 @@ class _ManagementPageState extends State<ManagementPage> {
               Divider(),
                InkWellWidget(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MultipleChoisePage()));
+                  // Navigator.push(context,
+                      // MaterialPageRoute(builder: (context) => ExampleScreen()));
                 },
-                title: "Multiple page",
+                title: "Multiple Choise",
               ),
               Divider(),
                InkWellWidget(
