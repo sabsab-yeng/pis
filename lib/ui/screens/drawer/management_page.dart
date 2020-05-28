@@ -8,7 +8,6 @@ import 'package:pis/ui/screens/tools/materials_page.dart';
 import 'package:pis/ui/screens/user/user_page.dart';
 import 'package:pis/ui/widgets/inkwell_widget.dart';
 import '../../ui_constant.dart';
-import 'listview_note.dart';
 
 class ManagementPage extends StatefulWidget {
   @override
@@ -86,22 +85,6 @@ class _ManagementPageState extends State<ManagementPage> {
                       MaterialPageRoute(builder: (context) => MaterialChoosePage()));
                 },
                 title: "Choose",
-              ),
-               Divider(),
-              InkWellWidget(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ListViewNote()));
-                },
-                title: "Notes",
-              ),
-              Divider(),
-               InkWellWidget(
-                onTap: () {
-                  // Navigator.push(context,
-                      // MaterialPageRoute(builder: (context) => ExampleScreen()));
-                },
-                title: "Multiple Choise",
               ),
               Divider(),
                InkWellWidget(

@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:pis/models/employee.dart';
 import 'package:pis/ui/widgets/assign_employee_widget.dart';
+import 'package:pis/ui/widgets/raised_button_widget.dart';
 
 class AssignEmployeePage extends StatefulWidget {
   @override
@@ -34,47 +35,61 @@ class _AssignEmployeePageState extends State<AssignEmployeePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: FutureBuilder(
-          future: FirebaseDatabase.instance
-              .reference()
-              .child("employee")
-              .orderByKey()
-              .once(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  // crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3),
-                ),
-                itemCount: items.length,
-                padding: const EdgeInsets.all(15.0),
-                itemBuilder: (context, position) {
-                  return AssignEmployeeWidget(
-                      employee: items[position],
-                      isSelected: (bool value) {
-                        setState(() {
-                          if (value) {
-                            selectedList.add(items[position]);
-                          } else {
-                            selectedList.remove(items[position]);
-                          }
-                        });
-                        print("$position : $value");
-                      },
-                      key: Key(items[position].toString()));
+        child: Stack(
+          children: [
+            FutureBuilder(
+              future: FirebaseDatabase.instance
+                  .reference()
+                  .child("employee")
+                  .orderByKey()
+                  .once(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      // crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3),
+                    ),
+                    itemCount: items.length,
+                    padding: const EdgeInsets.all(15.0),
+                    itemBuilder: (context, position) {
+                      return AssignEmployeeWidget(
+                          employee: items[position],
+                          isSelected: (bool value) {
+                            setState(() {
+                              if (value) {
+                                selectedList.add(items[position]);
+                              } else {
+                                selectedList.remove(items[position]);
+                              }
+                            });
+                            print("$position : $value");
+                          },
+                          key: Key(items[position].toString()));
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Text(
+                    snapshot.error,
+                    style: TextStyle(color: Colors.red),
+                  );
+                }
+                return CircularProgressIndicator(
+                  backgroundColor: Colors.red,
+                );
+              },
+            ),
+            Positioned(
+              top: 400,
+              left: 120,
+              child: RaisedButtonWidget(
+                onPressed: () {
+                  Navigator.pop(context);
                 },
-              );
-            } else if (snapshot.hasError) {
-              return Text(
-                snapshot.error,
-                style: TextStyle(color: Colors.red),
-              );
-            }
-            return CircularProgressIndicator(
-              backgroundColor: Colors.red,
-            );
-          },
+                title: "Confirm",
+              ),
+            ),
+          ],
         ),
       ),
     );

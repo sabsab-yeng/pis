@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pis/ui/screens/location/check_location_page.dart';
 import 'package:pis/ui/screens/settings/setting_page.dart';
 import 'package:pis/ui/widgets/menu_drawer_widget.dart';
 import '../home/root_page.dart';
@@ -36,16 +35,6 @@ class DrawerMenuPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => RootPage()));
-              },
-            ),
-            MenuDrawerWidget(
-              icon: Icons.map,
-              title: "Google map",
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CheckLocationPage()));
               },
             ),
             MenuDrawerWidget(

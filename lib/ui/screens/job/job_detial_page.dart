@@ -242,10 +242,10 @@ class _JobDetPageState extends State<JobDetPage> {
           ),
 
           // _buttonAction(JobStatus.New),
-          _buttonAction(JobStatus.SiteSurvey),
+          // _buttonAction(JobStatus.SiteSurvey),
           // _buttonAction(JobStatus.Testing),
           // _buttonAction(JobStatus.MaterialRequest),
-          // _buttonAction(JobStatus.InstallationExecution),
+          _buttonAction(JobStatus.InstallationExecution),
           // _buttonAction(JobStatus.TechReport),
           // _buttonAction(JobStatus.CustomerConfirm),
         ],

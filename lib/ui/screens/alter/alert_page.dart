@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pis/ui/screens/location/check_location_page.dart';
 import '../../ui_constant.dart';
 
 class AlterPage extends StatefulWidget {
@@ -26,8 +25,7 @@ class _AlterPageState extends State<AlterPage> {
             Card(
               child: InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CheckLocationPage()));
+                
                 },
                 child: Container(
                   padding: EdgeInsets.all(20),
