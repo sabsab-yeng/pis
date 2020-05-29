@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                 Expanded(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
                         onPressed: () {},
@@ -141,39 +141,39 @@ class _LoginPageState extends State<LoginPage> {
                           size: 30,
                         ),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          FontAwesomeIcons.apple,
-                          color: Colors.black,
-                          size: 30,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.phone,
-                          color: Colors.blue,
-                          size: 30,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          FontAwesomeIcons.microsoft,
-                          color: Colors.blue,
-                          size: 30,
-                        ),
-                      ),
+                      // SizedBox(
+                      //   width: 10,
+                      // ),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: Icon(
+                      //     FontAwesomeIcons.apple,
+                      //     color: Colors.black,
+                      //     size: 30,
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   width: 10,
+                      // ),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: Icon(
+                      //     Icons.phone,
+                      //     color: Colors.blue,
+                      //     size: 30,
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   width: 10,
+                      // ),
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: Icon(
+                      //     FontAwesomeIcons.microsoft,
+                      //     color: Colors.blue,
+                      //     size: 30,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

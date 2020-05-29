@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:intl/intl.dart';
 import 'package:pis/bloc/job_delial_bloc.dart';
 import 'package:pis/enum/enum.dart';
 import 'package:pis/models/job.dart';
 import 'package:pis/ui/screens/job/assign_employee_page.dart';
 import 'package:pis/ui/screens/location/draw_google_map.dart';
+import 'package:pis/ui/widgets/assign_employee_widget.dart';
 import 'package:pis/ui/widgets/bottom_button_widget.dart';
 import 'package:pis/ui/widgets/no_widget.dart';
-import 'package:pis/ui/widgets/raised_button_widget.dart';
 import 'package:pis/ui/widgets/yes_widget.dart';
 import '../../ui_constant.dart';
 
@@ -31,7 +32,7 @@ class _JobDetPageState extends State<JobDetPage> {
   Text _customerIDController;
   Text _employeeIDController;
   Text _dateNowController;
-  Text _dateInstallController;
+  TextEditingController _dateInstallController;
   TextEditingController _statusController;
 
   @override
@@ -40,7 +41,8 @@ class _JobDetPageState extends State<JobDetPage> {
     _customerIDController = Text(widget.job.custid);
     _employeeIDController = Text(widget.job.empid);
     _dateNowController = Text(widget.job.dateNow);
-    _dateInstallController = Text(widget.job.dateInstall);
+    _dateInstallController =
+        TextEditingController(text: widget.job.dateInstall);
     _statusController = TextEditingController(text: widget.job.status);
   }
 
@@ -56,8 +58,9 @@ class _JobDetPageState extends State<JobDetPage> {
           // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
           //   return LookingEmployeeWidget();
           // });
-
+          _changedStatus();
           openEmployee(context);
+          // Navigator.push(context, MaterialPageRoute(builder: (context)=> AssignEmployeeWidget()));
         },
       );
     } else if (jobStatus == JobStatus.SiteSurvey) {
@@ -70,22 +73,25 @@ class _JobDetPageState extends State<JobDetPage> {
           //   return LookingEmployeeWidget();
           // });
 
+          // openLocation(context);
+          _changedStatus();
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DrawerGoogleMap()));
+        },
+      );
+    } else if (jobStatus == JobStatus.SiteSurvey) {
+      return BottomButtonWidget(
+        backgroundColor: Colors.blue,
+        title: "Material Request",
+        icon: Icon(Icons.location_on, color: Colors.white),
+        onClicked: () {
+          // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
+          //   return LookingEmployeeWidget();
+          // });
+
           openLocation(context);
         },
       );
-      } else if (jobStatus == JobStatus.SiteSurvey) {
-        return BottomButtonWidget(
-          backgroundColor: Colors.blue,
-          title: "Material Request",
-          icon: Icon(Icons.location_on, color: Colors.white),
-          onClicked: () {
-            // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
-            //   return LookingEmployeeWidget();
-            // });
-
-            openLocation(context);
-          },
-        );
     } else if (jobStatus == JobStatus.InstallationExecution) {
       return Positioned(
         bottom: 0,
@@ -116,7 +122,7 @@ class _JobDetPageState extends State<JobDetPage> {
     } else if (jobStatus == JobStatus.Testing) {
       return BottomButtonWidget(
         backgroundColor: Colors.blue,
-        title: "Tech Report",
+        title: "Testing",
         icon: Icon(Icons.report, color: Colors.white),
         onClicked: () {
           // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
@@ -196,6 +202,23 @@ class _JobDetPageState extends State<JobDetPage> {
     );
   }
 
+
+   String _selectedDateInstall = 'Tap to select date install';
+
+  Future<void> _selectDateInstall(BuildContext context) async {
+    final DateTime d = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime(2090),
+    );
+    if (d != null)
+      setState(() {
+        _selectedDateInstall = DateFormat('dd-MM-yyyy').format(d);
+      });
+    _dateInstallController.text = _selectedDateInstall.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -229,9 +252,22 @@ class _JobDetPageState extends State<JobDetPage> {
                 Padding(padding: EdgeInsets.all(5.0)),
                 Text("Employee ID: " + _employeeIDController.data),
                 Padding(padding: EdgeInsets.all(5.0)),
-                Text("Date Install: " + _dateInstallController.data),
+                Text("Date Create: " + _dateNowController.data),
                 Padding(padding: EdgeInsets.all(5.0)),
-                Text("Date Install: " + _dateNowController.data),
+                TextField(
+                  controller: _dateInstallController,
+                  decoration: InputDecoration(
+                     hintText: _selectedDateInstall,
+                  labelText: 'Date install',
+                     suffixIcon: IconButton(
+                    icon: Icon(Icons.calendar_today),
+                    tooltip: 'Tap to open date install',
+                    onPressed: () {
+                      _selectDateInstall(context);
+                    },
+                  ),
+                  ),
+                ),
                 Padding(padding: EdgeInsets.all(5.0)),
                 TextField(
                   controller: _statusController,
@@ -243,9 +279,9 @@ class _JobDetPageState extends State<JobDetPage> {
 
           // _buttonAction(JobStatus.New),
           // _buttonAction(JobStatus.SiteSurvey),
-          // _buttonAction(JobStatus.Testing),
+          _buttonAction(JobStatus.Testing),
           // _buttonAction(JobStatus.MaterialRequest),
-          _buttonAction(JobStatus.InstallationExecution),
+          // _buttonAction(JobStatus.InstallationExecution),
           // _buttonAction(JobStatus.TechReport),
           // _buttonAction(JobStatus.CustomerConfirm),
         ],
@@ -259,7 +295,7 @@ class _JobDetPageState extends State<JobDetPage> {
         'custId': _customerIDController.data,
         'empId': _employeeIDController.data,
         'dateNow': _dateNowController.data,
-        'dateInstall': _dateInstallController.data,
+        'dateInstall': _dateInstallController.text,
         'status': _statusController.text
       }).then((_) {
         Navigator.pop(context);
@@ -269,7 +305,7 @@ class _JobDetPageState extends State<JobDetPage> {
         'custId': _customerIDController.data,
         'empId': _employeeIDController.data,
         'dateNow': _dateNowController.data,
-        'dateInstall': _dateInstallController.data,
+        'dateInstall': _dateInstallController.text,
         'status': _statusController.text
       }).then((_) {
         Navigator.pop(context);

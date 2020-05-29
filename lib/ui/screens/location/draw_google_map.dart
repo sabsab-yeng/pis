@@ -6,6 +6,8 @@ import 'package:pis/ui/widgets/material_widget.dart';
 import 'package:polymaker/core/models/location_polygon.dart';
 import 'package:polymaker/polymaker.dart' as polymaker;
 
+import '../../ui_constant.dart';
+
 class DrawerGoogleMap extends StatefulWidget {
   @override
   _DrawerGoogleMapState createState() => _DrawerGoogleMapState();
@@ -78,119 +80,140 @@ class _DrawerGoogleMapState extends State<DrawerGoogleMap> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "Location Result: \n" +
-                  (locationList != null
-                      ? locationList
-                          .map((val) => "[${val.latitude}, ${val.longitude}]\n")
-                          .toString()
-                      : ""),
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18),
-            ),
-            SizedBox(height: 10),
-            Container(
-              height: 45,
-              child: RaisedButton(
-                color: Colors.blue,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                onPressed: () => getLocation(),
-                child: Text(
-                  "Get Location",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+    return Scaffold(
+       appBar: AppBar(
+        backgroundColor: appBarColor,
+        title: Text(
+          'Drawer google map',
+          style: appbarTextStyle,
+        ),
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: appbarIconColor),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          // width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Location Result: \n" +
+                    (locationList != null
+                        ? locationList
+                            .map((val) =>
+                                "[${val.latitude}, ${val.longitude}]\n")
+                            .toString()
+                        : ""),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 20),
+              Container(
+                height: 45,
+                child: RaisedButton(
+                  color: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  onPressed: () => getLocation(),
+                  child: Text(
+                    "Get Location",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(selectedReportList.join(" , ")),
-            SizedBox(
-              height: 10,
-            ),
-            FlatButton(
-              onPressed: () {
-                _showReportDialog();
-              },
-              child: Text("Choose material"),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
+              SizedBox(
+                height: 20,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Text(selectedReportList.join(" , ")),
+              SizedBox(
+                height: 20,
+              ),
+              FlatButton(
+                onPressed: () {
+                  _showReportDialog();
+                },
+                child: Text("Choose material"),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FlatButton(
+                      child: Text("Camera"),
+                      onPressed: () {
+                        _showDialogChoise(context);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Customer Name',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Phone',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Note',
+                ),
+                maxLength: 500,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FlatButton(
-                    child: Text("Camera"),
+                  RaisedButton(
                     onPressed: () {
-                      _showDialogChoise(context);
+                      Navigator.pop(context);
                     },
+                    child: Text("Decline"),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Confirm"),
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Customer Name',
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Phone',
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Note',
-              ),
-              maxLength: 500,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Decline"),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Confirm"),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
