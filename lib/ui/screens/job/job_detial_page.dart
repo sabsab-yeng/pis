@@ -69,14 +69,14 @@ class _JobDetPageState extends State<JobDetPage> {
         title: "Site survey",
         icon: Icon(Icons.location_on, color: Colors.white),
         onClicked: () {
-          // _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
-          //   return LookingEmployeeWidget();
-          // });
+          _scaffoldKey.currentState.showBottomSheet((BuildContext context) {
+            return DrawerGoogleMap();
+          });
 
-          // openLocation(context);
-          _changedStatus();
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => DrawerGoogleMap()));
+          openLocation(context);
+          //   _changedStatus();
+          //   Navigator.push(context,
+          //       MaterialPageRoute(builder: (context) => DrawerGoogleMap()));
         },
       );
     } else if (jobStatus == JobStatus.SiteSurvey) {
@@ -202,8 +202,7 @@ class _JobDetPageState extends State<JobDetPage> {
     );
   }
 
-
-   String _selectedDateInstall = 'Tap to select date install';
+  String _selectedDateInstall = 'Tap to select date install';
 
   Future<void> _selectDateInstall(BuildContext context) async {
     final DateTime d = await showDatePicker(
@@ -257,15 +256,15 @@ class _JobDetPageState extends State<JobDetPage> {
                 TextField(
                   controller: _dateInstallController,
                   decoration: InputDecoration(
-                     hintText: _selectedDateInstall,
-                  labelText: 'Date install',
-                     suffixIcon: IconButton(
-                    icon: Icon(Icons.calendar_today),
-                    tooltip: 'Tap to open date install',
-                    onPressed: () {
-                      _selectDateInstall(context);
-                    },
-                  ),
+                    hintText: _selectedDateInstall,
+                    labelText: 'Date install',
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      tooltip: 'Tap to open date install',
+                      onPressed: () {
+                        _selectDateInstall(context);
+                      },
+                    ),
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(5.0)),
@@ -278,8 +277,8 @@ class _JobDetPageState extends State<JobDetPage> {
           ),
 
           // _buttonAction(JobStatus.New),
-          // _buttonAction(JobStatus.SiteSurvey),
-          _buttonAction(JobStatus.Testing),
+          _buttonAction(JobStatus.SiteSurvey),
+          // _buttonAction(JobStatus.Testing),
           // _buttonAction(JobStatus.MaterialRequest),
           // _buttonAction(JobStatus.InstallationExecution),
           // _buttonAction(JobStatus.TechReport),

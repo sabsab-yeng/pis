@@ -70,27 +70,31 @@ class _ManagementPageState extends State<ManagementPage> {
                 },
                 title: "User",
               ),
-               Divider(),
+              Divider(),
               InkWellWidget(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MaterialPage()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => MaterialPage()));
                 },
                 title: "Materials",
               ),
-               Divider(),
+              Divider(),
               InkWellWidget(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MaterialChoosePage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MaterialChoosePage()));
                 },
                 title: "Choose",
               ),
               Divider(),
-               InkWellWidget(
+              InkWellWidget(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DrawerGoogleMap()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DrawerGoogleMap()));
                 },
                 title: "Draw google map",
               ),

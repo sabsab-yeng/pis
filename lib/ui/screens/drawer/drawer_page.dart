@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pis/ui/screens/settings/profile_page.dart';
 import 'package:pis/ui/screens/settings/setting_page.dart';
 import 'package:pis/ui/widgets/menu_drawer_widget.dart';
 import '../home/root_page.dart';
@@ -50,15 +49,14 @@ class DrawerMenuPage extends StatelessWidget {
               icon: Icons.dialpad,
               title: "Manage Data",
               onTap: () {
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ManagementPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ManagementPage()));
               },
             ),
             MenuDrawerWidget(
               icon: Icons.dialpad,
               title: "Profile",
-              onTap: () {
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfilePage()));
-              },
+              onTap: () {},
             ),
           ],
         ),
